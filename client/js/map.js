@@ -3,12 +3,12 @@ var app = angular.module('ProjectOpenData');
 app.factory('map', function() {
   // factory function body that constructs shinyNewServiceInstance
   var map = {};
-  
+
   map.create = function(domId) {
     var width = 600;
     var height = 400;
-    /* 
-      * On créait un nouvel objet path qui permet 
+    /*
+      * On créait un nouvel objet path qui permet
       * de manipuler les données géographiques.
     */
     var path = d3.geo.path();
@@ -40,7 +40,7 @@ app.factory('map', function() {
     /*
     * On charge les données GeoJSON
     */
-    d3.json('static/DEPARTEMENT.json', function(req, geojson) {
+    d3.json('static/DEPARTEMENTmin.json', function(req, geojson) {
 
       /*
       * On "bind" un élément SVG path pour chaque entrée
@@ -66,8 +66,8 @@ app.factory('map', function() {
       features.enter()
         .append("path")
         .attr('class', 'departement')
-        .attr('fill', function(d) { 
-          return colorScale(+d.properties.CODE_DEPT); 
+        .attr('fill', function(d) {
+          return colorScale(+d.properties.CODE_DEPT);
         })
         .attr("d", path)
         .on('click', map.countyClickHandler(deps, path, width, height));
