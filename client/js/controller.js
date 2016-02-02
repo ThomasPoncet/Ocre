@@ -1,6 +1,9 @@
 angular.module('ProjectOpenData', [])
 
-.controller('MapController', ['$scope', '$compile', 'map', 'state', function ($scope, $compile, map, state) {
+.controller('MapController', ['$scope', '$compile', 'map', 'state', 'dataProvider', function ($scope, $compile, map, state, dataProvider) {
+	dataProvider.getRegion(84, function(regionGeog){
+		console.log(regionGeog);
+	});
 	map.create("#map", "onMapClick", $scope);
 	$scope.state = state;
 
@@ -9,7 +12,7 @@ angular.module('ProjectOpenData', [])
 		state.setSelectedRegion(code_dep);
 	}
 
-	
+
 }])
 
 .controller('SettingsBoard', ['$scope', 'state', function($scope, state) {

@@ -1,21 +1,21 @@
 angular.module('ProjectOpenData')
-.factory('dataProvider', ['$http', function(http) {
+.factory('dataProvider', ['$http', function($http) {
     var dataProvider = {};
 
 
     /**
      * Vote first tour management
      **/
-    this.voteT1 = {}
-    this.getVoteT1 = function(codeDep, codeParti) {
+    dataProvider.voteT1 = {};
+    dataProvider.getVoteT1 = function(codeDep, codeParti) {
         if (typeof(voteT1.codeDep) != undefined) {
             if (typeof(voteT1.codeDep.codeParti) != undefined) {
             } else {
-                // voteT1.codeDep.codeParti = http.get("localhost:300/getVoteT1/?codeDep="+"codeDep&codeParti="+codeParti);
+                // voteT1.codeDep.codeParti = $http.get("localhost:300/getVoteT1/?codeDep="+"codeDep&codeParti="+codeParti);
             }
         } else {
             voteT1.codeDep = {};
-            // voteT1.codeDep.codeParti = http.get("localhost:300/getVoteT1/?codeDep="+"codeDep&codeParti="+codeParti);
+            // voteT1.codeDep.codeParti = $http.get("localhost:300/getVoteT1/?codeDep="+"codeDep&codeParti="+codeParti);
         }
         return voteT1.codeDep.codeParti;
     };
@@ -23,16 +23,16 @@ angular.module('ProjectOpenData')
     /**
      * Vote second tour management
      **/
-     this.voteT2 = {}
-     this.getVoteT2 = function(codeDep, codeParti) {
+     dataProvider.voteT2 = {};
+     dataProvider.getVoteT2 = function(codeDep, codeParti) {
          if (typeof(voteT2.codeDep) != undefined) {
              if (typeof(voteT2.codeDep.codeParti) != undefined) {
              } else {
-                 // voteT2.codeDep.codeParti = http.get("localhost:300/getVoteT2/?codeDep="+"codeDep&codeParti="+codeParti);
+                 // voteT2.codeDep.codeParti = $http.get("localhost:3000/getVoteT2/?codeDep="+"codeDep&codeParti="+codeParti);
              }
          } else {
              voteT2.codeDep = {};
-             // voteT2.codeDep.codeParti = http.get("localhost:300/getVoteT2/?codeDep="+"codeDep&codeParti="+codeParti);
+             // voteT2.codeDep.codeParti = $http.get("localhost:3000/getVoteT2/?codeDep="+"codeDep&codeParti="+codeParti);
          }
          return voteT2.codeDep.codeParti;
      };
@@ -40,15 +40,23 @@ angular.module('ProjectOpenData')
       /**
        * Gestion fond de carte des régions
        **/
-      this.getRegion = function(codeReg){
-          var completeGeog = http.get("static/DEPARTEMENTmin.json");
-          var regionGeog = completeGeog;
-          completeGeog.features = [];
-          for (var reg in completeGeog.features) {
-              if (reg.properties.CODE_REG.parseInt() === codeReg) {
-                  regionGeog.features.push(reg);
+      dataProvider.getRegion = function(codeReg, callback){
+          $http.get("/static/DEPARTEMENTmin.json").success(function(data){
+              var regionGeog = data;
+              var regionFeatures = [];
+              for (reg of regionGeog.features) {
+                  if (parseInt(reg.properties.CODE_REG) === codeReg) {
+                      console.log(reg);
+                      console.log(reg.properties);
+                      console.log(reg.properties.CODE_REG);
+                      regionFeatures.push(reg);
+                  }
               }
-          }
+              regionGeog.features = regionFeatures;
+              callback(regionGeog);
+          });
       };
 
-});
+      return dataProvider;
+
+}]);
