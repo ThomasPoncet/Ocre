@@ -37,5 +37,18 @@ angular.module('ProjectOpenData')
          return voteT2.codeDep.codeParti;
      };
 
+      /**
+       * Gestion fond de carte des régions
+       **/
+      this.getRegion = function(codeReg){
+          var completeGeog = http.get("static/DEPARTEMENTmin.json");
+          var regionGeog = completeGeog;
+          completeGeog.features = [];
+          for (var reg in completeGeog.features) {
+              if (reg.properties.CODE_REG.parseInt() === codeReg) {
+                  regionGeog.features.push(reg);
+              }
+          }
+      };
 
 });
