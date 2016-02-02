@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <style type="text/css" src="static/style.css"></style>
 
+<script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
 <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/controller.js"></script>
@@ -13,10 +14,12 @@
 
 <body >
 
-<div ng-controller="MapController" id="map"></div>
+<div ng-controller="MapController">
+	<div id="map">
+	</div>
+</div>
 <div ng-controller="SettingsBoard">
 	{{state.selected_region}}
-	<button ng-click="update()">{{b}}</button>
 </div>
 </body>
 </html>

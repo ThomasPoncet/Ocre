@@ -1,19 +1,17 @@
-var app = angular.module('ProjectOpenData', []);
+angular.module('ProjectOpenData', [])
 
-app.controller('MapController', ['$scope', 'map', 'state', function ($scope, map, state) {
+.controller('MapController', ['$scope', '$compile', 'map', 'state', function ($scope, $compile, map, state) {
+	map.create("#map", "onMapClick", $scope);
 	$scope.state = state;
 
-	map.create("#map", function(code_dep) {
+	$scope.onMapClick = function(code_dep) {
+		console.log("modif callback " + code_dep);
 		state.setSelectedRegion(code_dep);
-		console.log(code_dep);
-	});
-}]);
-
-app.controller('SettingsBoard', ['$scope', 'state', function($scope, state) {
-	$scope.state = state;
-	$scope.b = "00"
-	$scope.update = function() {
-		console.log(",kfds");
-		$scope.b =  state.selected_region;
 	}
+
+	
+}])
+
+.controller('SettingsBoard', ['$scope', 'state', function($scope, state) {
+	$scope.state = state;
 }]);
