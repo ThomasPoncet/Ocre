@@ -4,7 +4,7 @@ app.factory('map', function() {
   // factory function body that constructs shinyNewServiceInstance
   var map = {};
 
-  map.create = function(domId) {
+  map.create = function(domId, callback) {
     var width = 600;
     var height = 400;
     /*
@@ -69,14 +69,17 @@ app.factory('map', function() {
         .attr('fill', function(d) {
           return colorScale(+d.properties.CODE_DEPT);
         })
+        .attr("data-code", function(d) {
+          return d.properties.CODE_DEPT
+        })
         .attr("d", path)
-        .on('click', map.countyClickHandler(deps, path, width, height));
+        .on('click', map.countyClickHandler(deps, path, width, height, callback));
     });
   };
 
   map.centered = null;
 
-  map.countyClickHandler = function(deps, path, width, height) {
+  map.countyClickHandler = function(deps, path, width, height, callback) {
     return function(d) {
       var x, y, k;
 
@@ -86,6 +89,8 @@ app.factory('map', function() {
         y = centroid[1];
         k = 5;
         map.centered = d;
+        //on appelle le callback
+        callback(d3.select(this).attr("data-code"));
       } else {
         x = width / 2;
         y = height / 2;

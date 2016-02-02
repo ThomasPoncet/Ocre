@@ -7,12 +7,16 @@
 <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/controller.js"></script>
+<script type="text/javascript" src="js/state.js"></script>
 <script type="text/javascript" src="js/map.js"></script>
 </head>
 
-<body ng-controller="MapController">
+<body >
 
-<div id="map"></div>
-{{txt}}
+<div ng-controller="MapController" id="map"></div>
+<div ng-controller="SettingsBoard">
+	{{state.selected_region}}
+	<button ng-click="update()">{{b}}</button>
+</div>
 </body>
 </html>
