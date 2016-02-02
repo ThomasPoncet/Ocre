@@ -4,8 +4,8 @@ var app = angular.module('ProjectOpenData')
   var map = {};
 
   map.create = function(domId, callback_name, $scope) {
-    var width = 600;
-    var height = 400;
+    var width = angular.element(domId).parent()[0].offsetWidth;
+    var height = 370;
     /*
       * On créait un nouvel objet path qui permet
       * de manipuler les données géographiques.
@@ -64,7 +64,7 @@ var app = angular.module('ProjectOpenData')
       */
       features.enter()
         .append("path")
-        .attr('class', 'departements')
+        .attr('class', 'departement')
         .attr('fill', function(d) {
           return colorScale(+d.properties.CODE_DEPT);
         })
@@ -73,8 +73,8 @@ var app = angular.module('ProjectOpenData')
           return callback_name + '("' + d.properties.CODE_DEPT + '")';
         });
 
-      var template = $compile(angular.element(domId).html())($scope);
-      angular.element(domId).replaceWith(template);
+        var template = $compile(angular.element(domId).html())($scope);
+        angular.element(domId).replaceWith(template);
     });
   };
 /*
