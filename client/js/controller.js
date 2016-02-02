@@ -4,7 +4,7 @@ angular.module('ProjectOpenData', [])
 	dataProvider.getRegion(84, function(regionGeog){
 		console.log(regionGeog);
 	});
-	map.create("#map", "onMapClick", $scope);
+	map.create("#map", "onMapClick", $scope, 'static/DEPARTEMENTmin.json');
 	$scope.state = state;
 
 	//on instancie la map

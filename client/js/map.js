@@ -1,9 +1,9 @@
 var app = angular.module('ProjectOpenData')
-.factory('map', ['$compile', function($compile) {
+.factory('map', ['$compile', 'dataProvider', function($compile, dataProvider) {
   // factory function body that constructs shinyNewServiceInstance
   var map = {};
 
-  map.create = function(domId, callback_name, $scope) {
+  map.create = function(domId, callback_name, $scope, geoShape) {
     var width = angular.element(domId).parent()[0].offsetWidth;
     var height = 370;
     /*
@@ -39,7 +39,7 @@ var app = angular.module('ProjectOpenData')
     /*
     * On charge les données GeoJSON
     */
-    d3.json('static/DEPARTEMENTmin.json', function(req, geojson) {
+    d3.json(geoShape, function(req, geojson) {
 
       /*
       * On "bind" un élément SVG path pour chaque entrée
