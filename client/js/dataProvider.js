@@ -37,6 +37,12 @@ angular.module('ProjectOpenData')
          return voteT2.codeDep.codeParti;
      };
 
+     dataProvider.getFrance = function(callback){
+         $http.get("/static/DEPARTEMENTmin.json").success(function(data){
+     		callback(data);
+     	});
+    };
+
       /**
        * Gestion fond de carte des régions
        **/
@@ -46,9 +52,6 @@ angular.module('ProjectOpenData')
               var regionFeatures = [];
               for (reg of regionGeog.features) {
                   if (parseInt(reg.properties.CODE_REG) === codeReg) {
-                      console.log(reg);
-                      console.log(reg.properties);
-                      console.log(reg.properties.CODE_REG);
                       regionFeatures.push(reg);
                   }
               }

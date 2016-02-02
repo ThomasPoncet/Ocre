@@ -3,7 +3,7 @@ var app = angular.module('ProjectOpenData')
   // factory function body that constructs shinyNewServiceInstance
   var map = {};
 
-  map.create = function(domId, callback_name, $scope, geoShape) {
+  map.create = function(domId, callback_name, $scope, geojson) {
     var width = angular.element(domId).parent()[0].offsetWidth;
     var height = 370;
     /*
@@ -39,7 +39,7 @@ var app = angular.module('ProjectOpenData')
     /*
     * On charge les données GeoJSON
     */
-    d3.json(geoShape, function(req, geojson) {
+    // d3.json(geoShape, function(req, geojson) {
 
       /*
       * On "bind" un élément SVG path pour chaque entrée
@@ -75,7 +75,7 @@ var app = angular.module('ProjectOpenData')
 
         var template = $compile(angular.element(domId).html())($scope);
         angular.element(domId).replaceWith(template);
-    });
+    // });
   };
 /*
   map.centered = null;
