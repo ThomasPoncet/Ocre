@@ -1,10 +1,9 @@
-var app = angular.module('ProjectOpenData');
-
-app.factory('map', function() {
+var app = angular.module('ProjectOpenData')
+.factory('map', ['$compile', function($compile) {
   // factory function body that constructs shinyNewServiceInstance
   var map = {};
 
-  map.create = function(domId, callback) {
+  map.create = function(domId, callback_name, $scope) {
     var width = 600;
     var height = 400;
     /*
@@ -50,7 +49,7 @@ app.factory('map', function() {
         .selectAll("path")
         .data(geojson.features);
 
-        /*
+      /*
       * On cr"éé un ColorScale, qui va nous
       * permettre d'assigner plus tard une
       * couleur de fond à chacun de nos
@@ -65,18 +64,20 @@ app.factory('map', function() {
       */
       features.enter()
         .append("path")
-        .attr('class', 'departement')
+        .attr('class', 'departements')
         .attr('fill', function(d) {
           return colorScale(+d.properties.CODE_DEPT);
         })
-        .attr("data-code", function(d) {
-          return d.properties.CODE_DEPT
-        })
         .attr("d", path)
-        .on('click', map.countyClickHandler(deps, path, width, height, callback));
+        .attr("ng-click", function(d) {
+          return callback_name + '("' + d.properties.CODE_DEPT + '")';
+        });
+
+      var template = $compile(angular.element(domId).html())($scope);
+      angular.element(domId).replaceWith(template);
     });
   };
-
+/*
   map.centered = null;
 
   map.countyClickHandler = function(deps, path, width, height, callback) {
@@ -109,6 +110,6 @@ app.factory('map', function() {
       .attr("transform", trStr);
     };
   };
-
+*/
   return map;
-});
+}]);
