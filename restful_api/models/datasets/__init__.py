@@ -1,0 +1,1 @@
+from .data_chomage import POURCENTAGE_CHOMAGE_PAR_DEPTS
