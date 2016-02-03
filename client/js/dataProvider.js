@@ -49,17 +49,31 @@ angular.module('ProjectOpenData')
              });
          }
      };
+    //  EN ATTENTE DE LA DECISION
+    //  dataProvider.votesDep = {};
+    //  dataProvider.getVote = function(tour, codesPartisListe, dept, callback){
+    //      for (codeParti of codesPartisListe) {
+    //          if (dataProvider.votesDep[codeParti] !== "undefined"){
+    //
+    //          }
+    //      }
+    //      if (typeof(dataProvider.listes[tour]) !== "undefined"){
+    //          callback(dataProvider.listes[tour]);
+    //      } else {
+    //          $http.get(apiAddress+"/listes?tour="+tour).success(function(data){
+    //              dataProvider.listes[tour] = data;
+    //              callback(dataProvider.listes[tour]);
+    //          });
+    //      }
+    //  };
 
      // Les listes presentes pour le premier ou second tour. (tour 1 ou 2)
      dataProvider.listes = {};
      // Attention  : tour doit etre une chaine de caracteres
      dataProvider.getListes = function(tour, callback){
          if (typeof(dataProvider.listes[tour]) !== "undefined"){
-             console.log("defined");
-             console.log(typeof(dataProvider.listes[tour]));
              callback(dataProvider.listes[tour]);
          } else {
-             console.log("undefined");
              $http.get(apiAddress+"/listes?tour="+tour).success(function(data){
                  dataProvider.listes[tour] = data;
                  callback(dataProvider.listes[tour]);
@@ -68,11 +82,12 @@ angular.module('ProjectOpenData')
      };
 
      dataProvider.getFrance = function(callback){
-        //  $http.get("/static/DEPARTEMENTmin.json").success(function(data){
-         $http.get("/static/regions-20140306-100m.json").success(function(data){
+         $http.get("/static/DEPARTEMENTmin.json").success(function(data){
+        //  $http.get("/static/regions-20140306-100m.json").success(function(data){
      		callback(data);
      	});
     };
+
 
       /**
        * Gestion fond de carte des régions
@@ -103,14 +118,12 @@ angular.module('ProjectOpenData')
         return
       }
 
-      return dataProvider;
-
       // Dataset list !
       dataProvider.datasetList = null;
       dataProvider.getDatasetList = function(callback){
           if (dataProvider.datasetList == null){
-              $http.get("????").success(function(data){
-                  dataProvider.datasetList == data;
+              $http.get(apiAddress+"/datasets").success(function(data){
+                  dataProvider.datasetList = data;
                   callback(dataProvider.datasetList);
               });
           } else {
@@ -130,6 +143,8 @@ angular.module('ProjectOpenData')
               callback(dataProvider.datasets[datasetName]);
           }
       };
+
+      return dataProvider;
 
 
 }]);
