@@ -7,34 +7,46 @@ angular.module('ProjectOpenData')
      * Vote first tour management
      **/
     dataProvider.voteT1 = {};
-    dataProvider.getVoteT1 = function(codeDep, codeParti) {
-        if (typeof(voteT1.codeDep) != undefined) {
-            if (typeof(voteT1.codeDep.codeParti) != undefined) {
+    dataProvider.getVoteT1 = function(codeReg, codeParti, callback) {
+        if (typeof(voteT1.[codeReg]) != undefined) {
+            if (typeof(voteT1.[codeReg].[codeParti]) != undefined) {
+                callback(teT1.[codeReg].[codeParti]);
             } else {
-                // voteT1.codeDep.codeParti = $http.get("localhost:300/getVoteT1/?codeDep="+"codeDep&codeParti="+codeParti);
+                $http.get("localhost:3000/getVoteT1/?codeReg="+"codeReg&codeParti="+codeParti).success(function(data){
+                    voteT1.[codeReg].[codeParti] = data;
+                    callback(voteT1.[codeReg].[codeParti]);
+                });
             }
         } else {
-            voteT1.codeDep = {};
-            // voteT1.codeDep.codeParti = $http.get("localhost:300/getVoteT1/?codeDep="+"codeDep&codeParti="+codeParti);
+            voteT1.[codeReg] = {};
+            $http.get("localhost:3000/getVoteT1/?codeReg="+"codeReg&codeParti="+codeParti).success(function(data){
+                voteT1.[codeReg].[codeParti] = data;
+                callback(voteT1.[codeReg].[codeParti]);
+            });
         }
-        return voteT1.codeDep.codeParti;
     };
 
     /**
      * Vote second tour management
      **/
      dataProvider.voteT2 = {};
-     dataProvider.getVoteT2 = function(codeDep, codeParti) {
-         if (typeof(voteT2.codeDep) != undefined) {
-             if (typeof(voteT2.codeDep.codeParti) != undefined) {
+     dataProvider.getVoteT2 = function(codeReg, codeParti, callback) {
+         if (typeof(voteT2.[codeReg]) != undefined) {
+             if (typeof(voteT2.[codeReg].[codeParti]) != undefined) {
+                 callback(voteT2.[codeReg].codeParti);
              } else {
-                 // voteT2.codeDep.codeParti = $http.get("localhost:3000/getVoteT2/?codeDep="+"codeDep&codeParti="+codeParti);
+                 $http.get("localhost:3000/getVoteT2/?codeReg="+"codeReg&codeParti="+codeParti).success(function(data){
+                     voteT2.[codeReg].[codeParti] = data;
+                     callback(voteT2.[codeReg].[codeParti]);
+                 });
              }
          } else {
-             voteT2.codeDep = {};
-             // voteT2.codeDep.codeParti = $http.get("localhost:3000/getVoteT2/?codeDep="+"codeDep&codeParti="+codeParti);
+             voteT2.[codeReg] = {};
+             $http.get("localhost:3000/getVoteT2/?codeReg="+"codeReg&codeParti="+codeParti).success(function(data){
+                 voteT2.[codeReg].[codeParti] = data;
+                 callback(voteT2.[codeReg].[codeParti]);
+             });
          }
-         return voteT2.codeDep.codeParti;
      };
 
      // Les listes presentes pour le premier ou second tour. (tour 1 ou 2)
