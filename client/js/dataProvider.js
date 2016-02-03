@@ -45,7 +45,8 @@ angular.module('ProjectOpenData')
      };
 
      dataProvider.getFrance = function(callback){
-         $http.get("/static/DEPARTEMENTmin.json").success(function(data){
+        //  $http.get("/static/DEPARTEMENTmin.json").success(function(data){
+         $http.get("/static/regions-20140306-100m.json").success(function(data){
      		callback(data);
      	});
     };
@@ -68,5 +69,32 @@ angular.module('ProjectOpenData')
       };
 
       return dataProvider;
+
+      // Dataset list !
+      dataProvider.datasetList = null;
+      dataProvider.getDatasetList = function(callback){
+          if (dataProvider.datasetList == null){
+              $http.get("????").success(function(data){
+                  dataProvider.datasetList == data;
+                  callback(dataProvider.datasetList);
+              });
+          } else {
+              callback(dataProvider.datasetList);
+          }
+      };
+
+      // Datasets
+      dataProvider.datasets = {};
+      dataProvider.getDataset(datasetName, callback){
+          if (typeof(dataProvider.datasets[datasetName]) == undefined){
+              $http.get("????").success(function(data){
+                  dataProvider.datasets[datasetName] == data;
+                  callback(dataProvider.datasets[datasetName]);
+              });
+          } else {
+              callback(dataProvider.datasets[datasetName]);
+          }
+      };
+
 
 }]);
