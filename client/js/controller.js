@@ -22,7 +22,6 @@ angular.module('ProjectOpenData', ['chart.js'])
 
 .controller('SettingsBoard', ['$scope', 'state', function($scope, state) {
 	$scope.state = state;
-<<<<<<< HEAD
 
 	$scope.available_parties = ["FN", "centre", "UMP", "Verts"];
 	$scope.available_dataSet = ["Chomage", "viol infantile"];
@@ -49,6 +48,3 @@ angular.module('ProjectOpenData', ['chart.js'])
     	console.log(points, evt);
   	};
 }]);
-=======
-}]);
->>>>>>> f00a09106bf6df6902bb7833e626bb15dbc42b01
