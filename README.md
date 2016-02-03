@@ -8,7 +8,34 @@ Nous avons d'abord souhaité répondre à la demande de l'école de journalisme 
 
 ## Récupération des différents jeux de données
 ### Résultat des élections
-Nous avons récupéré les données des élections régionales (premier et second tour) de 2015 en France via un contact de l'école de journalisme de Grenoble.
+Nous avons récupéré les données des élections régionales (premier et second tour) de 2015 en France via un contact de l'école de journalisme de Grenoble. Pour plus de compréhension, il est important de savoir que les différents parties et rassemblements politiques sont définis par un libéllé bien précis :
+  - LDIV : Liste Divers
+  - LECO : Liste Ecologistes Indépendantes
+  - LUDI : Liste Union des Démocrates et
+des Indépendants
+  - LUG : Liste d'Union de la gauche
+  - LCOM : Liste présentée par le PCF hors de l'alliance du Front de gauche
+  - LDVG : Liste divers gauche
+  - LEXG : Liste d'extrême gauche
+  - LRDG : Liste Corse "La Garantie Républicaine"
+  - LREG : Liste régionaliste
+  - LSOC : Liste du parti socialiste
+  - LEXD : Liste d'extrême droite
+  - LLR : Liste Les Républicains
+  - LMDM : Liste Modem
+  - LFN : Liste du Front National
+  - LVEC : Liste présentée par Europe Écologie Les Verts
+  - LFG : Liste Front de Gauche
+  - LUD : Liste Union de la Droite
+  - LDVD : Liste divers droite
+  - LVEG :
+  - LDLF :
+
+Avec les sources :
+  - http://www.localtis.info/cs/BlobServer?blobkey=id&blobnocache=true&blobwhere=1250168333702&blobheader=application%2Fpdf&blobcol=urldata&blobtable=MungoBlobs
+  - http://www.senat.fr/senatoriales_2011/liste_des_nuances_politiques_des_candidats_et_des_listes.html
+  - http://www.gironde.gouv.fr/content/download/19597/118216/file/GRILLE%20DES%20NUANCES%20POLITIQUES%20DES%20LISTES.pdf
+
 
 ### Base de données gouvernementale
 Nous avons utilisé les données de l'INSEE et du ministère de l'éducation national pour pouvoir les confronter aux résultats des élections
