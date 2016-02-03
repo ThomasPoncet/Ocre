@@ -38,7 +38,7 @@ angular.module('ProjectOpenData')
      };
 
      dataProvider.getFrance = function(callback){
-         $http.get("/static/DEPARTEMENTmin.json").success(function(data){
+         $http.get("static/DEPARTEMENTmin.json").success(function(data){
      		callback(data);
      	});
     };
@@ -47,7 +47,7 @@ angular.module('ProjectOpenData')
        * Gestion fond de carte des régions
        **/
       dataProvider.getRegion = function(codeReg, callback){
-          $http.get("/static/DEPARTEMENTmin.json").success(function(data){
+          $http.get("static/DEPARTEMENTmin.json").success(function(data){
               var regionGeog = data;
               var regionFeatures = [];
               for (reg of regionGeog.features) {
@@ -59,6 +59,18 @@ angular.module('ProjectOpenData')
               callback(regionGeog);
           });
       };
+
+      dataProvider.getValueInDefaultDataSet = function(partie, regionIndice) {
+        return Math.random();
+      };
+
+      dataProvider.getValueInDataSet = function(dataSet, regionIndice) {
+        return Math.random();
+      };
+
+      dataProvider.codeToIndiceRegion = function(code) {
+        return 
+      }
 
       return dataProvider;
 

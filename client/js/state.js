@@ -17,4 +17,6 @@ angular.module('ProjectOpenData')
 	this.setDataSet = function(dataSet) {
 		this.data_set = dataSet;
 	};
+
+	this.region_number = 100;
 }]);
