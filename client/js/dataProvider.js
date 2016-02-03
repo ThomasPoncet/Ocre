@@ -52,6 +52,7 @@ angular.module('ProjectOpenData')
 
      // Les listes presentes pour le premier ou second tour. (tour 1 ou 2)
      dataProvider.listes = {};
+     // Attention  : tour doit etre une chaine de caracteres
      dataProvider.getListes = function(tour, callback){
          if (typeof(dataProvider.listes[tour]) !== "undefined"){
              console.log("defined");

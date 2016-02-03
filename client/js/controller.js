@@ -1,12 +1,11 @@
 angular.module('ProjectOpenData', ['nvd3'])
 
 .controller('MapController', ['$scope', '$compile', 'map', 'state', 'dataProvider', function ($scope, $compile, map, state, dataProvider) {
-	dataProvider.getListes(1, function(listes){
-		console.log(listes);
-	});
+
 	dataProvider.getFrance(function(franceGeog){
 		map.create("#map", "onMapClick", $scope, franceGeog);
 	});
+
 	// Only for test !
 	// dataProvider.getRegion(84, function(regionGeog){
 	// 	map.create("#region", "onMapClick", $scope, regionGeog);
@@ -73,7 +72,7 @@ angular.module('ProjectOpenData', ['nvd3'])
 		      		"axisLabel": state.data_set,
 		      		"axisLabelDistance": -5
 		    	}
-		  		
+
 			}
 		};
 	};
@@ -84,8 +83,8 @@ angular.module('ProjectOpenData', ['nvd3'])
 	$scope.$watch('state.data_set', function(newV, oldV) {
 		genData();
 	});
-	
+
 	genData();
 
-    
+
 }]);
