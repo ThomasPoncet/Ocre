@@ -1,12 +1,11 @@
-var app = angular.module('ProjectOpenData');
-
-app.factory('map', function() {
+var app = angular.module('ProjectOpenData')
+.factory('map', ['$compile', 'dataProvider', function($compile, dataProvider) {
   // factory function body that constructs shinyNewServiceInstance
   var map = {};
 
-  map.create = function(domId, callback) {
-    var width = 600;
-    var height = 400;
+  map.create = function(domId, callback_name, $scope, geojson) {
+    var width = angular.element(domId).parent()[0].offsetWidth;
+    var height = 370;
     /*
       * On créait un nouvel objet path qui permet
       * de manipuler les données géographiques.
@@ -40,7 +39,7 @@ app.factory('map', function() {
     /*
     * On charge les données GeoJSON
     */
-    d3.json('static/DEPARTEMENTmin.json', function(req, geojson) {
+    // d3.json(geoShape, function(req, geojson) {
 
       /*
       * On "bind" un élément SVG path pour chaque entrée
@@ -50,7 +49,7 @@ app.factory('map', function() {
         .selectAll("path")
         .data(geojson.features);
 
-        /*
+      /*
       * On cr"éé un ColorScale, qui va nous
       * permettre d'assigner plus tard une
       * couleur de fond à chacun de nos
@@ -69,14 +68,16 @@ app.factory('map', function() {
         .attr('fill', function(d) {
           return colorScale(+d.properties.CODE_DEPT);
         })
-        .attr("data-code", function(d) {
-          return d.properties.CODE_DEPT
-        })
         .attr("d", path)
-        .on('click', map.countyClickHandler(deps, path, width, height, callback));
-    });
-  };
+        .attr("ng-click", function(d) {
+          return callback_name + '("' + d.properties.CODE_DEPT + '")';
+        });
 
+        var template = $compile(angular.element(domId).html())($scope);
+        angular.element(domId).replaceWith(template);
+    // });
+  };
+/*
   map.centered = null;
 
   map.countyClickHandler = function(deps, path, width, height, callback) {
@@ -109,6 +110,6 @@ app.factory('map', function() {
       .attr("transform", trStr);
     };
   };
-
+*/
   return map;
-});
+}]);

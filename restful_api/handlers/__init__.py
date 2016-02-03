@@ -1,1 +1,1 @@
-from .base import FakeHandler
+from .base import RetrieveListesHandler, RetrieveTotalVotesHandler
