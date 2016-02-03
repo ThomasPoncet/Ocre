@@ -37,6 +37,13 @@ angular.module('ProjectOpenData')
          return voteT2.codeDep.codeParti;
      };
 
+     // Les listes presentes pour le premier ou second tour. (tour 1 ou 2)
+     dataProvider.getListes = function(tour, callback){
+         $http.get('localhost:3000/listes/?tour='+tour).success(function(data){
+             callback(data);
+         });
+     };
+
      dataProvider.getFrance = function(callback){
          $http.get("/static/DEPARTEMENTmin.json").success(function(data){
      		callback(data);
