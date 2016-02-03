@@ -39,6 +39,5 @@ def remodel_poll_data(original_data_collection, cleaned_collection, listes_colle
         liste_data.update(v)
         all_lists_data_list.append(liste_data)
 
-    print(all_lists_data_list)
     db[listes_collection].insert_many(all_lists_data_list)
     db[cleaned_collection].insert_many(all_poll_data)

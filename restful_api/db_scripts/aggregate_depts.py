@@ -29,7 +29,5 @@ def aggregate_per_depts(clean_data_collection, per_dept_collection):
         depts_data[entry["_id"]["code_dept"]]["poll_outcome"].append(liste_poll_outcome)
 
     depts_data = [v for k,v in depts_data.items()]
-    print(depts_data)
-    print(len(depts_data))
 
     db[per_dept_collection].insert_many(depts_data)
