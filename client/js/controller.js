@@ -1,7 +1,9 @@
 angular.module('ProjectOpenData', [])
 
 .controller('MapController', ['$scope', '$compile', 'map', 'state', 'dataProvider', function ($scope, $compile, map, state, dataProvider) {
-
+	dataProvider.getListes(1, function(listes){
+		console.log(listes);
+	});
 	dataProvider.getFrance(function(franceGeog){
 		map.create("#map", "onMapClick", $scope, franceGeog);
 	});
