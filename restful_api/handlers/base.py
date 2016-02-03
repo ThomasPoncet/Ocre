@@ -33,7 +33,7 @@ class RetrieveListesHandler(BaseByRoundHandler):
 class BaseByListeHandler(BaseByRoundHandler):
     def __init__(self):
         super().__init__()
-        self.reqparse.add_argument("tour", type=int, default=1)
+        self.reqparse.add_argument("liste_id", type=str, required=True)
 
     def do_request_parsing(self):
         super().do_request_parsing()
