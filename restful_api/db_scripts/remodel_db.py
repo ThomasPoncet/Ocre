@@ -16,6 +16,9 @@ def remodel_poll_data(original_data_collection, cleaned_collection, listes_colle
         commune_poll_data = {k : entry.get(k, None) for k in ["code_dept","dept_name","commune_code","commune_name",
                                                           "registered_voters","non_voters" ,"voters","blank",
                                                           "nones","expressed"]}
+        if commune_poll_data["code_dept"] in ["ZA", "ZB", "ZC", "ZD"]:
+            continue # on ignore les départements DOMTOM
+
         commune_poll_data["poll_outcome"] = []
 
         #extraction des votes des listes, et création d'un index des listes
