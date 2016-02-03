@@ -62,9 +62,9 @@ var app = angular.module('ProjectOpenData')
         console.log("color " + value + " tp " + val);
         return "#1111" + val
       }
-
-      var echelle = svg.append("g").append("path")
-      .attr("fill", )
+      // 
+    //   var echelle = svg.append("g").append("path")
+    //   .attr("fill", )
       /*
       * Pour chaque entrée du tableau feature, on
       * créait un élément SVG path, avec les
