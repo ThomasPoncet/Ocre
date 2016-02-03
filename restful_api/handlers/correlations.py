@@ -2,6 +2,7 @@ from .base import BaseByListeHandler
 from flask_restful import Resource
 from models.constants import DatasetType
 from models.correlations import DataCorellator
+
 DATASETS_NAMES = {DatasetType.UNEMPLOYMENT: "Chômage",
                   DatasetType.WEDDINGS : "Taux de Nuptialité",
                   DatasetType.EVOLUTION_JOB : "Taux d'Emploi",
@@ -18,4 +19,6 @@ class RetrieveCorrellationHandler(BaseByListeHandler):
     def get(self):
         self.reqparse.add_argument("dataset", type=int, default=1)
         self.do_request_parsing()
-        return DataCorellator().get_correlation_data(self.round_number, self.liste_id, self.args["dataset"])
+        return DataCorellator().get_correlation_data(self.round_number,
+                                                     self.liste_ids,
+                                                     DatasetType(self.args["dataset"]))
