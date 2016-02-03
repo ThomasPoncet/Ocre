@@ -23,7 +23,7 @@ class DBConnector(object):
 
 class ListesQueries(DBConnector):
 
-    def RetrieveListesForBallot(self, round_number):
+    def retrieve_listes_for_poll(self, round_number):
         if round_number == RoundNumber.FIRST:
             collection = self.listes_t1
         else:
@@ -33,7 +33,7 @@ class ListesQueries(DBConnector):
 
 class VotesQueries(DBConnector):
 
-    def RetrieveTotalVotesForListe(self, round_number, liste_id):
+    def retrieve_total_votes_for_liste(self, round_number, liste_id):
         pipeline = [
             {"$project" : {"_id" : 1, "poll_outcome" : 1}},
             {"$unwind" : "$poll_outcome"},

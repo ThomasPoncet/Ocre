@@ -1,1 +1,1 @@
-from .data_chomage import POURCENTGE_CHOMAGE_PAR_DEPTS
+from .data_chomage import POURCENTAGE_CHOMAGE_PAR_DEPTS
