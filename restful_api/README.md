@@ -24,7 +24,7 @@ Pour insérer les données brutes dans la base (à partir des deux CSV), il faut
 
 `mongoimport --db polldata --collection t1_full --type csv --headerline regionales-2015-communes.csv`
 Pour le tour 1
-`mongoimport --db polldata --collection t1_full --type csv --headerline Reg_15_Resultats_Communes_T2.csv`
+`mongoimport --db polldata --collection t2_full --type csv --headerline Reg_15_Resultats_Communes_T2.csv`
 Pour le tour 2.
 
 C'est pas fini. Trouvez le script "database_loader.py", et lancez le avec
