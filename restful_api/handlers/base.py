@@ -30,13 +30,21 @@ class RetrieveListesHandler(BaseByRoundHandler):
         self.do_request_parsing()
         return ListesQueries().retrieve_listes_for_poll(self.round_number)
 
-class RetrieveTotalVotesHandler(BaseByRoundHandler):
+class BaseByListeHandler(BaseByRoundHandler):
+    def __init__(self):
+        super().__init__()
+        self.reqparse.add_argument("liste_id", type=str, required=True)
+
+    def do_request_parsing(self):
+        super().do_request_parsing()
+        self.liste_id = self.args["liste_id"]
+
+class RetrieveVotesHandler(BaseByListeHandler):
     """Permet de récupérer le total des votes pour un parti donné, pour un tour donné"""
     def get(self):
-        self.reqparse.add_argument("liste_id", type=str, required=True)
         self.do_request_parsing()
-        return VotesQueries().retrieve_total_votes_for_liste(self.round_number, self.args["liste_id"])
+        return VotesQueries().retrieve_total_votes_for_liste(self.round_number, self.liste_id)
 
 class RetrieveVotesByDepts(BaseByRoundHandler):
-    """Recupère les totaux de votes pour un département par tour """
+    """Recupère les totaux de votes pour un département par tour"""
     pass

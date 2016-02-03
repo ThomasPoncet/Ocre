@@ -1,10 +1,13 @@
 from .base_queries import DBConnector, VotesQueries
 from .constants import DatasetType
-from .datasets import POURCENTAGE_CHOMAGE_PAR_DEPTS
+from .datasets import POURCENTAGE_CHOMAGE_PAR_DEPTS, POURCENTAGE_TAUX_NUPTIALITE_PAR_MILLE_PAR_DEPTS, POURCENTAGE_EVOLUTION_EMPLOI_PAR_DEPTS, POURCENTAGE_TAUX_NATALITE_BRUT_PAR_MILLE_PAR_DEPTS
 from sklearn import preprocessing
 from numpy import array
 
-DATASET_TYPE_TO_OBJECTS = {DatasetType.UNEMPLOYMENT: POURCENTAGE_CHOMAGE_PAR_DEPTS}
+DATASET_TYPE_TO_OBJECTS = {DatasetType.UNEMPLOYMENT: POURCENTAGE_CHOMAGE_PAR_DEPTS,
+                            DatasetType.WEDDINGS : POURCENTAGE_TAUX_NUPTIALITE_PAR_MILLE_PAR_DEPTS,
+                            DatasetType.EVOLUTION_JOB : POURCENTAGE_EVOLUTION_EMPLOI_PAR_DEPTS,
+                            DatasetType.NATALITY : POURCENTAGE_TAUX_NATALITE_BRUT_PAR_MILLE_PAR_DEPTS}
 
 class DataCorellator(VotesQueries):
 

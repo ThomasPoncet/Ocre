@@ -13,10 +13,12 @@
     <link href="static/css/basic.css" rel="stylesheet" />
     <!--CUSTOM MAIN STYLES-->
     <link href="static/css/custom.css" rel="stylesheet" />
+    <link href="static/css/nv.d3.css" rel="stylesheet" />
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-    <link rel="stylesheet" type="text/css" href="static/style.css" />
 
+    <link rel="stylesheet" type="text/css" href="static/style.css" /> 
+    <link rel="stylesheet" href="js/angular-chart.css">
 </head>
 <body>
     <div id="wrapper">
@@ -33,24 +35,39 @@
         </nav>
         <!-- /. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
-            <div class="sidebar-collapse">
+            <div class="sidebar-collapse" ng-controller="SettingsBoard">
                 <ul class="nav" id="main-menu">
                     <li>
                         <a class="active-menu" href="index.html"><i class="fa fa-dashboard "></i>Settings</a>
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-desktop "></i>DataSets <span class="fa arrow"></span></a>
+
+                    <li >
+                        <a href="#"><i class="fa fa-database "></i>DataSets <span class="fa arrow"></span></a>
                          <ul class="nav nav-second-level">
-                            <li>
-                                <a href="#"><i class="fa fa-toggle-on"></i>Gros spliff en moyennes par personnes</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-bell "></i>Chomages des moins de 12ans</a>
+                            
+                            <li ng-repeat="dataset in available_dataSet">
+                                <a href="#" ng-click="selectDataSet(dataset)"><i class="fa" ng-class=
+                                    "{'fa-check-square' : dataset == state.data_set,
+                                     'fa-times-circle' : dataset != state.data_set}">
+                                 </i>{{dataset}}</a>
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-square-o "></i>Settings</a>
+                    <li >
+                    <a href="#"><i class="fa fa-users "></i>Listes <span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            
+                            <li ng-repeat="partie in available_parties">
+                                <a href="#" ng-click="selectPartie(partie)"><i class="fa" ng-class=
+                                    "{'fa-check-square' : partie == state.selected_partie,
+                                     'fa-times-circle' : partie != state.selected_partie}">
+                                 </i>{{partie}}</a>
+                            </li>
+                                                 
+                        </ul>
+                    </li>
+                    <li ng-if="state.selected_region" class="animate-if">
+                        <a href="#" ng>Region séléctionné : {{state.selected_region}}<i class="fa fa-times pull-right" ng-click="unselectRegion()"></i></a>
                     </li>
                 </ul>
 
@@ -66,10 +83,16 @@
 							<div id="map">
 							</div>
                             <!-- Only for test !!! -->
-							<div id="region">
-							</div>
+							<!-- <div id="region">
+							</div> -->
 						</div>
-					</div>
+					</div><div ng-controller="PanelPlotCloud" class="col-md-8">
+                        <div class="panel panel-default">
+                            Camenbert
+                        
+                            <nvd3 options='options' data='data'></nvd3>
+                        </div>
+                    </div>
 					<div class="col-md-8">
 						<div class="panel panel-default">
 							panel de visualisation des graphes
@@ -82,11 +105,7 @@
 							region séléctionnée : {{state.selected_region}}
 						</div>
 					</div>
-					<div class="col-md-6">
-						<div class="panel panel-default">
-							Camenbert
-						</div>
-					</div>
+					
 					<div class="col-md-12">
 						<div class="panel panel-default">
 							Settings
@@ -114,6 +133,12 @@
 
 <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
+
+<script type="text/javascript" src="js/nv.d3.min.js"></script>
+<script type="text/javascript" src="js/angular-nvd3.min.js"></script>
+
+<!-- <script type="text/javascript" src="js/angular-chart.js"></script>
+ -->
 <script type="text/javascript" src="js/controller.js"></script>
 <script type="text/javascript" src="js/state.js"></script>
 <script type="text/javascript" src="js/dataProvider.js"></script>

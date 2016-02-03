@@ -12,4 +12,6 @@ class RoundNumber(enum.Enum):
 
 class DatasetType(enum.Enum):
     UNEMPLOYMENT = 1
-
+    WEDDINGS = 2
+    EVOLUTION_JOB = 3
+    NATALITY = 4
