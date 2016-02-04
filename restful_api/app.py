@@ -1,7 +1,8 @@
 from flask import Flask
 from flask_restful import Api
 
-from handlers import RetrieveListesHandler, RetrieveVotesHandler, RetrieveDatasetsHandler, RetrieveCorrellationHandler
+from handlers import RetrieveListesHandler, RetrieveVotesHandler, RetrieveDatasetsHandler, \
+    RetrieveCorrellationHandler, RetrieveVotesByDeptsHandler, RetrieveGlobalDataHandler
 
 app = Flask(__name__)
 api = Api(app)
@@ -13,6 +14,12 @@ api.add_resource(RetrieveListesHandler, '/api/listes')
 
 # récupération du total des votes pour une liste de liste_id, pour un tour donné
 api.add_resource(RetrieveVotesHandler, "/api/total_votes")
+
+# récupération de données de base pour un tour, par département (taux blanc, abstention, pourcentage pour chaque liste)
+api.add_resource(RetrieveVotesByDeptsHandler, "/api/basic_data")
+
+# récupération des stats globales à la france
+api.add_resource(RetrieveGlobalDataHandler, "/api/global")
 
 #récupération de la liste des datasets
 api.add_resource(RetrieveDatasetsHandler, "/api/datasets")
