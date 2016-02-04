@@ -1,78 +1,97 @@
 [
     {
         "id": "LEXG",
-        "name": "Extrême gauche"
+        "name": "Extrême gauche",
+        "color": "#670E00"
     },
     {
         "id": "LLR",
-        "name": "Les Républicains"
+        "name": "Les Républicains",
+        "color": "#315FDE"
     },
     {
         "id": "LDVG",
-        "name": "Divers gauche"
+        "name": "Divers gauche",
+        "color": "#A51600"
     },
     {
         "id": "LMDM",
-        "name": "Modem"
+        "name": "Modem",
+        "color": "#F39427"
     },
     {
         "id": "LDVD",
-        "name": "Divers droite"
+        "name": "Divers droite",
+        "color": "#7E859E"
     },
     {
         "id": "LRDG",
-        "name": "Liste Corse : La Garantie Républicaine"
+        "name": "Liste Corse : La Garantie Républicaine",
+        "color": "#F2F4FB"
     },
     {
         "id": "LUG",
-        "name": "Union de la gauche"
+        "name": "Union de la gauche",
+        "color": "#B9121B"
     },
     {
         "id": "LFN",
-        "name": "Front National"
+        "name": "Front National",
+        "color": "#001B67"
     },
     {
         "id": "LDLF",
-        "name": "Debout La France"
+        "name": "Debout La France",
+        "color": "#046380"
     },
     {
         "id": "LREG",
-        "name": "Liste régionaliste"
+        "name": "Liste régionaliste",
+        "color": "#E1DA19"
     },
     {
         "id": "LECO",
-        "name": "Ecologistes Indépendants"
+        "name": "Ecologistes Indépendants",
+        "color": "#01D910"
     },
     {
         "id": "LUD",
-        "name": "Union de la Droite"
+        "name": "Union de la Droite",
+        "color": "#016DD9"
     },
     {
         "id": "LEXD",
-        "name": "Extrême Droite"
+        "name": "Extrême Droite",
+        "color": "#00203F"
     },
     {
         "id": "LCOM",
-        "name": "Liste présentée par le PCF hors de l'alliance du Front de gauche"
+        "name": "Liste présentée par le PCF hors de l'alliance du Front de gauche",
+        "color": "#4C1B1B"
     },
     {
         "id": "LVEC",
-        "name": "Europe Écologie Les Verts"
+        "name": "Europe Écologie Les Verts",
+        "color": "#19BC00"
     },
     {
         "id": "LSOC",
-        "name": "Parti Socialiste"
+        "name": "Parti Socialiste",
+        "color": "#e20040"
     },
     {
         "id": "LFG",
-        "name": "Front de Gauche"
+        "name": "Front de Gauche",
+        "color": "#F61221"
     },
     {
         "id": "LVEG",
-        "name": "Rass. EELV, PG, Nvelle gauche socialiste, Nvelle Donne"
+        "name": "Rass. EELV, PG, Nvelle gauche socialiste, Nvelle Donne",
+        "color": "#02CE2B"
     },
     {
         "id": "LDIV",
-        "name": "Liste Diverse"
+        "name": "Liste Diverse",
+        "color": "#A7A37E"
     }
 ]
