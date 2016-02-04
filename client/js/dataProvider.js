@@ -66,6 +66,36 @@ angular.module('ProjectOpenData')
     //          });
     //      }
     //  };
+    dataProvider.allVotes = {};
+    dataProvider.getAllVotes = function(tour, codesPartiListe, callback){
+        if (typeof(dataProvider.allVotes[tour]) != "undefined"){
+            if (typeof(dataProvider.allVotes[tour][JSON.stringify(codesPartiListe)]) != "undefined") {
+                callback(dataProvider.allVotes[tour][JSON.stringify(codesPartiListe)]);
+            } else {
+                $http.get(apiAddress+"/total_votes?tour="+tour+"&liste_ids="+JSON.stringify(codesPartiListe)).success(function(data){
+                    dataProvider.allVotes[tour][JSON.stringify(codesPartiListe)] = data;
+                    callback(dataProvider.allVotes[tour][JSON.stringify(codesPartiListe)]);
+                });
+            }
+        } else {
+            $http.get(apiAddress+"/total_votes?tour="+tour+"&liste_ids="+JSON.stringify(codesPartiListe)).success(function(data){
+                dataProvider.allVotes[tour] = {};
+                dataProvider.allVotes[tour][JSON.stringify(codesPartiListe)] = data;
+                callback(dataProvider.allVotes[tour][JSON.stringify(codesPartiListe)]);
+            });
+        }
+    };
+
+    dataProvider.getAllVotesDept = function(tour, codesPartiListe, dpt, callback){
+        dataProvider.getAllVotes(tour, codesPartiListe, function(data){
+            //get elt in tab with _id == dpt
+            for (res of data) {
+                if (res._id == dpt){
+                    callback(res);
+                }
+            }
+        });
+    };
 
      // Les listes presentes pour le premier ou second tour. (tour 1 ou 2)
      dataProvider.listes = {};
