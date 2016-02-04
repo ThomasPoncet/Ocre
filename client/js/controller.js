@@ -138,13 +138,6 @@ angular.module('ProjectOpenData', ['nvd3'])
             dataProvider.getVotesForPieChart(state.selected_tour, state.selected_region, function($scope) {
                 return function (data) {
                     $scope.data = data;
-                   /* for(elem of data) {
-                        console.log(elem.liste_id);
-                        $scope.data.push({
-                            "key": elem.liste_id,
-                            "y": elem.liste_percentage
-                        });
-                    }*/
                 }
             }($scope));
 
