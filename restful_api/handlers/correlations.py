@@ -7,8 +7,14 @@ DATASETS_NAMES = {DatasetType.UNEMPLOYMENT: "Chômage",
                   DatasetType.WEDDINGS : "Taux de Nuptialité",
                   DatasetType.EVOLUTION_JOB : "Taux d'Emploi",
                   DatasetType.NATALITY : "Taux de Natalité",
-                  DatasetType.ABSTENTION: "Pourcentage moyen d'abstention"}
-
+                  DatasetType.ABSTENTION: "Pourcentage moyen d'abstention",
+                  DatasetType.PACS: "Pourcentage de pacs en 2013",
+                  DatasetType.DIPLOME:"Nombre de diplomés de l'enseignement supérieur",
+                  DatasetType.NON_DIPLOME: "Nombre de non-diplomés",
+                  DatasetType.LOGEMENT_SECONDAIRE: "Nombre de logements secondaires",
+                  DatasetType.LOGEMENT_SOCIAUX: "Nombre de logements sociaux",
+                  DatasetType.MINIMA: "Part des minima sociaux sur la moyenne des revenus",
+                  DatasetType.NIVEAU_DE_VIE: "Niveau de vie"}
 
 class RetrieveDatasetsHandler(Resource):
     """Fournit la liste des datasets déjà disponibles"""
