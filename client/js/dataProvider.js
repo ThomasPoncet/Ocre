@@ -1,6 +1,6 @@
 angular.module('ProjectOpenData')
 .factory('dataProvider', ['$http', function($http) {
-    var apiAddress = "http://localhost:4000/api"
+    var apiAddress = "http://ocre.fr:4000/api";
     var dataProvider = {};
 
 
