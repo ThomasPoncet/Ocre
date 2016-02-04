@@ -9,7 +9,7 @@ Aller ici pour apprendre à faire l'install https://www.digitalocean.com/communi
 
 Ensuite, il faut python3. Pour ubuntu c'est comme ça:
 
-`sudo apt-get install python3 python3-pip python3-numpy`
+`sudo apt-get install python3 python3-pip python3-numpy python3-matplotlib`
 
 (oui tant qu'à faire, on en profite pour installer numpy)
 Ensuite, il faut installer les bibliothèques pymongo, flask-restful, et sklearn. Allons-y.
