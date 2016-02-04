@@ -39,11 +39,6 @@ var app = angular.module('ProjectOpenData')
       .append("g")
       .attr("id", "departements");
 
-    /*
-    * On charge les données GeoJSON
-    */
-    // d3.json(geoShape, function(req, geojson) {
-
       /*
       * On "bind" un élément SVG path pour chaque entrée
       * du tableau features de notre objet geojson
