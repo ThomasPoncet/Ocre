@@ -22,13 +22,13 @@ api.add_resource(RetrieveVotesByDeptsHandler, "/api/basic_data")
 # récupération des stats globales à la france
 api.add_resource(RetrieveGlobalDataHandler, "/api/global")
 
-#récupération de la liste des datasets
+# récupération de la liste des datasets
 api.add_resource(RetrieveDatasetsHandler, "/api/datasets")
 
-#récupération juste des datasets
+# récupération juste de donnés brutes d'un dataset
 api.add_resource(RetrieveDatasetDataHandler, "/api/dataset_raw")
 
-#récupération de la liste des datasets
+# récupération de la liste des datasets
 api.add_resource(RetrieveCorrellationHandler, "/api/correlation")
 
 if __name__ == '__main__':
