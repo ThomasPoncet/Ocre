@@ -3,7 +3,7 @@ from numpy.linalg.linalg import norm
 import matplotlib as mpl
 import matplotlib.cm as cm
 from matplotlib.colors import rgb2hex, colorConverter
-from sklearn import preprocessing
+from sklearn import preprocessing, linear_model
 
 from .base_queries import DBConnector, VotesQueries
 from .constants import DatasetType
@@ -41,6 +41,15 @@ class DataCorellator(VotesQueries):
 
         return hex_color_values, abs_maximum
 
+    def _linear_regression(self, array_x, array_y):
+        """calcule les coefficiens de la droite issus de la régression linéaire"""
+
+        array_x_reshaped = array_x.reshape((len(array_x),1))
+        model = linear_model.LinearRegression()
+        model.fit(array_x_reshaped, array_y)
+
+        return model.coef_[0], model.intercept_
+
     def get_correlation_data(self,round_number, liste_id, dataset_type):
         points = []
         # on sélectionne le dataset en fonction de l'argument
@@ -56,14 +65,10 @@ class DataCorellator(VotesQueries):
                            "votes_percentage" : dept_data["vote_percentage"],
                            "other_percentage" : dataset[dept_data["_id"]] / 100})
 
-        rescaled_x = preprocessing.scale(array(data_x))
-        rescaled_y = preprocessing.scale(array(data_y))
+        array_x, array_y = array(data_x), array(data_y)
+        rescaled_x, rescaled_y  = preprocessing.scale(array_x), preprocessing.scale(array_y)
         colors, max_val = self._compute_colors(rescaled_x, rescaled_y)
-
-        # plt.plot(rescaled_x, rescaled_y, "ro")
-        # plt.axhline(y=0, color='k')
-        # plt.axvline(x=0, color='k')
-        # plt.show()
+        reg_slope, reg_y_intercept = self._linear_regression(array_x, array_y)
 
         for i, x in enumerate(rescaled_x):
             points[i]["votes_normalized"] = rescaled_x[i]
@@ -71,4 +76,6 @@ class DataCorellator(VotesQueries):
             points[i]["color"] = colors[i]
 
         return {"points" : points,
-                "graph_metadata": {"max" : max_val}}
+                "graph_metadata": {"max" : max_val,
+                                   "regression": {"slope" : reg_slope,
+                                                  "intercept" : reg_y_intercept}}}
