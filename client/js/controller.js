@@ -5,14 +5,16 @@ angular.module('ProjectOpenData', ['nvd3'])
 	dataProvider.getFrance(function(franceGeog){
 		map.create("#map", "onMapClick", $scope, franceGeog);
 	});
-	dataProvider.getAllVotesDept("1", ["LFN", "LUD"], "38", function(listes){
- 		console.log(listes);
-		setTimeout(function(){
-			dataProvider.getAllVotesDept("1", ["LFN", "LUD"], "39", function(listes){
-		 		console.log(listes);
-			});
-		}, 3000);
- 	});
+
+	// Only for test !
+	// dataProvider.getAllVotesDept("1", ["LFN", "LUD"], "38", function(listes){
+ // 		console.log(listes);
+	// 	setTimeout(function(){
+	// 		dataProvider.getAllVotesDept("1", ["LFN", "LUD"], "39", function(listes){
+	// 	 		console.log(listes);
+	// 		});
+	// 	}, 3000);
+ // 	});
 
 	// Only for test !
 	// dataProvider.getRegion(84, function(regionGeog){
