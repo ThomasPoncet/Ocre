@@ -6,6 +6,8 @@ var app = angular.module('ProjectOpenData')
   map.create = function(domId, callback_name, $scope, geojson, data) {
     var width = angular.element(domId).parent()[0].offsetWidth;
 
+    console.log("drawing map !!!");
+
     $(domId).empty();
     var height = 500;
     /* On créait un nouvel objet path qui permet
@@ -36,11 +38,6 @@ var app = angular.module('ProjectOpenData')
     var deps = svg
       .append("g")
       .attr("id", "departements");
-
-    /*
-    * On charge les données GeoJSON
-    */
-    // d3.json(geoShape, function(req, geojson) {
 
       /*
       * On "bind" un élément SVG path pour chaque entrée
@@ -85,8 +82,8 @@ var app = angular.module('ProjectOpenData')
           return callback_name + '("' + d.properties.CODE_DEPT + '")';
         });
 
-        var template = $compile(angular.element(domId).html())($scope);
-        angular.element(domId).append(template);
+        var template = $compile('<div id="map">' + angular.element(domId).html() + "</div>")($scope);
+        angular.element(domId).replaceWith(template);
     // });
   };
 

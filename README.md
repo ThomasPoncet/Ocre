@@ -57,7 +57,7 @@ Nous avons utilisé les données de l'INSEE pour pouvoir les confronter aux rés
 ## Architecture
 L'Architecture de ce projet est assez simple. Celle du serveur est visible sur le schéma suivant :
 
-<img src = "serveur.png" title = "Serveur" alt = "Serveur">
+<img src = "doc/serveur.png" title = "Serveur" alt = "Serveur">
 
 
 Celle du client est présentée sur le schéma suivant :
