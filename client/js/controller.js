@@ -2,8 +2,6 @@ angular.module('ProjectOpenData', ['nvd3'])
 
 .controller('MapController', ['$scope', '$compile', 'map', 'state', 'dataProvider', function ($scope, $compile, map, state, dataProvider) {
 
-    // Pourquoi ne pas initialiser l'état (tour = 1, parti = null, datasetId = null
-    // Dans data provider si je vois null et null, je t'envoie rien et bim tu affiche la carte en couleur default.
     var draw_map = function() {
         dataProvider.getFrance(function (franceGeog) {
             dataProvider.getAllCorrelations(state.selected_tour, state.getSelectedPartieId(), state.getDatasetId(), function (data) {

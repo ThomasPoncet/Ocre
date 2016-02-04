@@ -5,69 +5,6 @@ angular.module('ProjectOpenData')
 
 
     /**
-     * Vote first tour management OBSELETE
-     **/
-    // dataProvider.voteT1 = {};
-    // dataProvider.getVoteT1Reg = function(codeReg, codeParti, callback) {
-    //     if (typeof(voteT1[codeReg]) != undefined) {
-    //         if (typeof(voteT1[codeReg][codeParti]) != undefined) {
-    //             callback(teT1[codeReg][codeParti]);
-    //         } else {
-    //             $http.get(apiAddress+"/getVoteT1/?codeReg="+"codeReg&codeParti="+codeParti).success(function(data){
-    //                 voteT1[codeReg][codeParti] = data;
-    //                 callback(voteT1[codeReg][codeParti]);
-    //             });
-    //         }
-    //     } else {
-    //         voteT1[codeReg] = {};
-    //         $http.get(apiAddress+"/getVoteT1/?codeReg="+"codeReg&codeParti="+codeParti).success(function(data){
-    //             voteT1[codeReg][codeParti] = data;
-    //             callback(voteT1[codeReg][codeParti]);
-    //         });
-    //     }
-    // };
-
-    /**
-     * Vote second tour management OBSELET
-     **/
-    //  dataProvider.voteT2 = {};
-    //  dataProvider.getVoteT2Reg = function(codeReg, codeParti, callback) {
-    //      if (typeof(voteT2[codeReg]) != undefined) {
-    //          if (typeof(voteT2[codeReg][codeParti]) != undefined) {
-    //              callback(voteT2[codeReg].codeParti);
-    //          } else {
-    //              $http.get(apiAddress+"/getVoteT2/?codeReg="+"codeReg&codeParti="+codeParti).success(function(data){
-    //                  voteT2[codeReg][codeParti] = data;
-    //                  callback(voteT2[codeReg][codeParti]);
-    //              });
-    //          }
-    //      } else {
-    //          voteT2[codeReg] = {};
-    //          $http.get(apiAddress+"/getVoteT2/?codeReg="+"codeReg&codeParti="+codeParti).success(function(data){
-    //              voteT2[codeReg][codeParti] = data;
-    //              callback(voteT2[codeReg][codeParti]);
-    //          });
-    //      }
-    //  };
-    //  OBSELETE
-    //  dataProvider.votesDep = {};
-    //  dataProvider.getVote = function(tour, codesPartisListe, dept, callback){
-    //      for (codeParti of codesPartisListe) {
-    //          if (dataProvider.votesDep[codeParti] !== "undefined"){
-    //
-    //          }
-    //      }
-    //      if (typeof(dataProvider.listes[tour]) !== "undefined"){
-    //          callback(dataProvider.listes[tour]);
-    //      } else {
-    //          $http.get(apiAddress+"/listes?tour="+tour).success(function(data){
-    //              dataProvider.listes[tour] = data;
-    //              callback(dataProvider.listes[tour]);
-    //          });
-    //      }
-    //  };
-
-    /**
      * Informations pour la carte et le graphe (tout y est précalculé)
      **/
     dataProvider.allCorrelations = {};
@@ -233,6 +170,7 @@ angular.module('ProjectOpenData')
         }
     };
 
+    // Attention : doit etre appelé après (dans le callback) loadDataset.
     dataProvider.getResVote = function(tour, dept, parti){
         for (resParti of dataProvider.allResVotes[''+tour][''+parti]) {
             if (''+resParti._id == ''+dept) {
@@ -240,6 +178,8 @@ angular.module('ProjectOpenData')
             }
         }
     };
+
+    // Attention : doit etre appelé après (dans le callback) loadAllResVotes.
     dataProvider.getValueInDataSet = function(datasetId, dept){
         for (dataDept of dataProvider.allDataSets[''+datasetId]) {
             if (''+dataDept.id == ''+dept) {
