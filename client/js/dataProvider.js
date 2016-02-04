@@ -124,24 +124,24 @@ angular.module('ProjectOpenData')
         });
     };
 
-     // Les listes presentes pour le premier ou second tour. (tour 1 ou 2)
-     dataProvider.listes = {};
-     // Attention  : tour doit etre une chaine de caracteres
-     dataProvider.getListes = function(tour, callback){
-         if (typeof(dataProvider.listes[tour]) !== "undefined"){
-             callback(dataProvider.listes[tour]);
-         } else {
-             $http.get("static/list_tour"+tour+".json").success(function(data){
-                 dataProvider.listes[tour] = data;
-                 callback(dataProvider.listes[tour]);
-             });
-         }
-     };
+    // Les listes presentes pour le premier ou second tour. (tour 1 ou 2)
+    dataProvider.listes = {};
+    // Attention  : tour doit etre une chaine de caracteres
+    dataProvider.getListes = function(tour, callback){
+        if (typeof(dataProvider.listes[tour]) !== "undefined"){
+            callback(dataProvider.listes[tour]);
+        } else {
+            $http.get("static/list_tour"+tour+".json").success(function(data){
+                dataProvider.listes[tour] = data;
+                callback(dataProvider.listes[tour]);
+            });
+        }
+    };
 
-     dataProvider.getFrance = function(callback){
-         $http.get("static/DEPARTEMENTmin.json").success(function(data){
-        //  $http.get("/static/regions-20140306-100m.json").success(function(data){
-     		callback(data);
+    dataProvider.getFrance = function(callback){
+        $http.get("static/DEPARTEMENTmin.json").success(function(data){
+        // $http.get("/static/regions-20140306-100m.json").success(function(data){
+            callback(data);
      	});
     };
 
@@ -149,55 +149,56 @@ angular.module('ProjectOpenData')
       /**
        * Gestion fond de carte des régions
        **/
-      dataProvider.getRegion = function(codeReg, callback){
-          $http.get("static/DEPARTEMENTmin.json").success(function(data){
-              var regionGeog = data;
-              var regionFeatures = [];
-              for (reg of regionGeog.features) {
-                  if (parseInt(reg.properties.CODE_REG) === codeReg) {
-                      regionFeatures.push(reg);
-                  }
-              }
-              regionGeog.features = regionFeatures;
-              callback(regionGeog);
-          });
-      };
+    dataProvider.getRegion = function(codeReg, callback){
+        $http.get("static/DEPARTEMENTmin.json").success(function(data){
+            var regionGeog = data;
+            var regionFeatures = [];
+            for (reg of regionGeog.features) {
+                if (parseInt(reg.properties.CODE_REG) === codeReg) {
+                    regionFeatures.push(reg);
+                }
+            }
+            regionGeog.features = regionFeatures;
+            callback(regionGeog);
+        });
+    };
 
       // Dataset list !
-      dataProvider.datasetList = null;
-      dataProvider.getDatasetList = function(callback){
-          if (dataProvider.datasetList == null){
-              $http.get(apiAddress+"/datasets").success(function(data){
-                  dataProvider.datasetList = data;
-                  callback(dataProvider.datasetList);
-              });
-          } else {
-              callback(dataProvider.datasetList);
-          }
-      };
+    dataProvider.datasetList = null;
+    dataProvider.getDatasetList = function(callback){
+        if (dataProvider.datasetList == null){
+            $http.get(apiAddress+"/datasets").success(function(data){
+                dataProvider.datasetList = data;
+                callback(dataProvider.datasetList);
+            });
+        } else {
+            callback(dataProvider.datasetList);
+        }
+    };
 
-      // Datasets
-      dataProvider.datasets = {};
-      dataProvider.getDataset = function(datasetName, callback){
-          if (typeof(dataProvider.datasets[datasetName]) == undefined){
-              $http.get("????").success(function(data){
-                  dataProvider.datasets[datasetName] == data;
-                  callback(dataProvider.datasets[datasetName]);
-              });
-          } else {
-              callback(dataProvider.datasets[datasetName]);
-          }
-      };
-
+    // Datasets
+    dataProvider.datasets = {};
+    dataProvider.getDataset = function(datasetName, callback){
+        if (typeof(dataProvider.datasets[datasetName]) == undefined){
+            $http.get("????").success(function(data){
+                dataProvider.datasets[datasetName] == data;
+                callback(dataProvider.datasets[datasetName]);
+            });
+        } else {
+            callback(dataProvider.datasets[datasetName]);
+        }
+    };
     dataProvider.loadAllResVotes = function(tour, partisSelectedList, callback){
 
     };
-    dataProvider.laodAllDataSet = function(datasetId, callback){
+      dataProvider.laodAllDataSet = function(datasetId, callback){
 
     };
     dataProvider.getResVote = function(selected_tour, dept, selected_partie){};
     dataProvider.getValueInDataSet = function(datasetId, dept){};
-    return dataProvider;
+
+
+return dataProvider;
 
 
 }]);
