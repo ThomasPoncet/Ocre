@@ -1,2 +1,2 @@
-from .base import RetrieveListesHandler, RetrieveVotesHandler
+from .base import RetrieveListesHandler, RetrieveVotesHandler, RetrieveVotesByDeptsHandler, RetrieveGlobalDataHandler
 from .correlations import RetrieveCorrellationHandler, RetrieveDatasetsHandler
