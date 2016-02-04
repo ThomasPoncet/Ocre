@@ -5,8 +5,8 @@ import matplotlib.cm as cm
 from matplotlib.colors import rgb2hex, colorConverter
 from sklearn import preprocessing, linear_model
 
-from models.colormap import redtoblue
-from .base_queries import DBConnector, VotesQueries
+from models.colormap import redtoblue, white_black_white
+from .base_queries import VotesQueries
 from .constants import DatasetType
 from .datasets import POURCENTAGE_CHOMAGE_PAR_DEPTS, \
     POURCENTAGE_TAUX_NUPTIALITE_PAR_MILLE_PAR_DEPTS, \
@@ -45,16 +45,16 @@ class DataCorellator(VotesQueries):
 
         # on instancie le gradient de couleur sur le modèle de couleur du centre
         normalized = mpl.colors.Normalize(vmin=-abs_maximum, vmax=abs_maximum)
-        color_map = redtoblue
 
-        color_gradient = cm.ScalarMappable(norm=normalized, cmap=color_map)
-
+        r_to_b_gradient = cm.ScalarMappable(norm=normalized, cmap=redtoblue)
+        w_b_w_gradient = cm.ScalarMappable(norm=normalized, cmap=white_black_white)
         # on calcule le produit scalaire de chaque valeur avec la diagonale
         # ensuite, on calcule la couleur à partir de la valeur de la projection sur la diagonale
         hex_color_values = []
         for i, x in enumerate(array_x):
-            scal_p = dot(array([array_x[i], array_y[i]]), diag) / diagonal_length
-            hex_color_values.append(rgb2hex(colorConverter.to_rgb(color_gradient.to_rgba(scal_p))))
+            scal_p_diag = dot(array([array_x[i], array_y[i]]), diag) / diagonal_length
+            scal_p_antidiag = dot(array([array_x[i], array_y[i]]), anti_diag) / diagonal_length
+            hex_color_values.append(rgb2hex(colorConverter.to_rgb(r_to_b_gradient.to_rgba(scal_p_diag))))
 
         return hex_color_values, abs_maximum
 
