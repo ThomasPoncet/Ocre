@@ -73,7 +73,7 @@ angular.module('ProjectOpenData')
     dataProvider.allCorrelations = {};
     dataProvider.getAllCorrelations = function(tour, codesPartiListe, datasetId, callback){
         if(codesPartiListe.length == 0 || typeof(datasetId)=="undefined"){
-            callback([]);
+            callback(null);
         }
         if (typeof(dataProvider.allCorrelations[tour]) != "undefined"){
             if (typeof(dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)]) != "undefined") {
