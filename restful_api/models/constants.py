@@ -16,3 +16,10 @@ class DatasetType(enum.Enum):
     EVOLUTION_JOB = 3
     NATALITY = 4
     ABSTENTION = 5
+    PACS = 6
+    DIPLOME = 7
+    NON_DIPLOME = 8
+    LOGEMENT_SECONDAIRE = 9
+    LOGEMENT_SOCIAUX = 10
+    MINIMA = 11
+    NIVEAU_DE_VIE = 12

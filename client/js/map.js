@@ -5,11 +5,10 @@ var app = angular.module('ProjectOpenData')
 
   map.create = function(domId, callback_name, $scope, geojson, data) {
     var width = angular.element(domId).parent()[0].offsetWidth;
-    var height = 370;
 
     $(domId).empty();
-    /*
-      * On créait un nouvel objet path qui permet
+    var height = 500;
+    /* On créait un nouvel objet path qui permet
       * de manipuler les données géographiques.
     */
     var path = d3.geo.path();
@@ -17,7 +16,7 @@ var app = angular.module('ProjectOpenData')
     // On définit les propriétés de la projection à utiliser
     var projection = d3.geo.conicConformal() // Lambert-93
           .center([2.454071, 47.279229]) // On centre la carte sur la France
-          .scale(2000)
+          .scale(2500)
           .translate([width / 2, height / 2]);
 
     path.projection(projection); // On assigne la projection au path

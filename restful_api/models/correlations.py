@@ -5,20 +5,34 @@ import matplotlib.cm as cm
 from matplotlib.colors import rgb2hex, colorConverter
 from sklearn import preprocessing, linear_model
 
+from models.colormap import redtoblue
 from .base_queries import DBConnector, VotesQueries
 from .constants import DatasetType
 from .datasets import POURCENTAGE_CHOMAGE_PAR_DEPTS, \
     POURCENTAGE_TAUX_NUPTIALITE_PAR_MILLE_PAR_DEPTS, \
     POURCENTAGE_EVOLUTION_EMPLOI_PAR_DEPTS, \
     POURCENTAGE_TAUX_NATALITE_BRUT_PAR_MILLE_PAR_DEPTS, \
-    POURCENTAGES_ABSTENTION_MOYEN
-
+    POURCENTAGES_ABSTENTION_MOYEN, \
+    POURCENTAGE_PACS_PAR_DEPTS, \
+    DIPLOME_ENSEIGNEMENT_SUPERIEUR_PAR_DEPTS, \
+    NON_DIPLOME_PAR_DEPTS, \
+    LOGEMENT_SECONDAIRE_PAR_DEPTS, \
+    LOGEMENT_SOCIAUX_PAR_DEPTS, \
+    MINIMA_SOCIAUX_PAR_DEPTS, \
+    NIVEAU_DE_VIE_EN_EUROS_PAR_DEPTS
 
 DATASET_TYPE_TO_OBJECTS = {DatasetType.UNEMPLOYMENT: POURCENTAGE_CHOMAGE_PAR_DEPTS,
                            DatasetType.WEDDINGS : POURCENTAGE_TAUX_NUPTIALITE_PAR_MILLE_PAR_DEPTS,
                            DatasetType.EVOLUTION_JOB : POURCENTAGE_EVOLUTION_EMPLOI_PAR_DEPTS,
                            DatasetType.NATALITY : POURCENTAGE_TAUX_NATALITE_BRUT_PAR_MILLE_PAR_DEPTS,
-                           DatasetType.ABSTENTION: POURCENTAGES_ABSTENTION_MOYEN().data}
+                           DatasetType.ABSTENTION: POURCENTAGES_ABSTENTION_MOYEN().data,
+                           DatasetType.PACS: POURCENTAGE_PACS_PAR_DEPTS,
+                           DatasetType.DIPLOME: DIPLOME_ENSEIGNEMENT_SUPERIEUR_PAR_DEPTS,
+                           DatasetType.NON_DIPLOME: NON_DIPLOME_PAR_DEPTS,
+                           DatasetType.LOGEMENT_SECONDAIRE: LOGEMENT_SECONDAIRE_PAR_DEPTS,
+                           DatasetType.LOGEMENT_SOCIAUX: LOGEMENT_SOCIAUX_PAR_DEPTS,
+                           DatasetType.MINIMA: MINIMA_SOCIAUX_PAR_DEPTS,
+                           DatasetType.NIVEAU_DE_VIE: NIVEAU_DE_VIE_EN_EUROS_PAR_DEPTS }
 
 class DataCorellator(VotesQueries):
 
@@ -27,10 +41,11 @@ class DataCorellator(VotesQueries):
         abs_maximum = max([max(map(abs,array_x)), max(map(abs,array_y))])
         diagonal_length = norm(array([abs_maximum, abs_maximum])) # longueur de la projection
         diag = array([diagonal_length, diagonal_length])
+        anti_diag = array([-diagonal_length, diagonal_length])
 
-        # on instancie le gradient de couleur sur le modèle "seismic_r"
+        # on instancie le gradient de couleur sur le modèle de couleur du centre
         normalized = mpl.colors.Normalize(vmin=-abs_maximum, vmax=abs_maximum)
-        color_map = cm.seismic_r
+        color_map = redtoblue
 
         color_gradient = cm.ScalarMappable(norm=normalized, cmap=color_map)
 
