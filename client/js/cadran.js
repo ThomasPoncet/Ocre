@@ -64,6 +64,14 @@ angular.module('ProjectOpenData')
                 .attr("transform", "translate(" + width/2 +", " + height/2 + ")")
                 .call(yAxis);
 
+            // Add the text label for the Y axis
+            svg.append("text")
+                .attr("y", width / 5)
+                .attr("x", (height * 0.45))
+                .attr("dy", "1em")
+                .style("text-anchor", "middle")
+                .text(state.data_set.name);
+
             // draw dots
             svg.selectAll(".dot")
                 .data(geojson.points)

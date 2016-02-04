@@ -71,7 +71,7 @@
                     </li>
 
                     <li ng-if="state.selected_region" class="animate-if">
-                        <a href="#" ng>Region séléctionné : {{state.selected_region}}<span class="fa fa-times" ng-click="unselectRegion()"></span></a>
+                        <a href="#" ng>Région sélectionnée : {{state.selected_region}}<span class="fa fa-times" ng-click="unselectRegion()"></span></a>
                     </li>
                 </ul>
 
@@ -120,24 +120,18 @@
                             </div>
                         </div>
                         <div  ng-controller="CorelationCadran">
-                            <div class="panel panel-default" id="cadran">
+                            <div class="panel panel-default" >
+                                <div class="panel-body">
+                                    <div class="panel panel-default" id="cadran">
+                                    </div>
+                                Chaque point représente un département
+                                </div>
+
                             </div>
+
 					    </div>
                     </div>
 
-					<!--<div class="col-md-8">-->
-						<!--<div class="panel panel-default">-->
-							<!--panel de visualisation des graphes-->
-						<!--</div>-->
-					<!--</div>-->
-					<!--<div ng-controller="SettingsBoard" class="col-md-6">-->
-						<!--<div class="panel panel-default">-->
-							<!--Info-->
-							<!--<br/>-->
-							<!--region séléctionnée : {{state.selected_region}}-->
-						<!--</div>-->
-					<!--</div>-->
-					
                 </div>
             </div>
             <!-- /. PAGE INNER  -->
