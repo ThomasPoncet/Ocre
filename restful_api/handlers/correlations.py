@@ -6,7 +6,8 @@ from models.correlations import DataCorellator, DATASET_TYPE_TO_OBJECTS
 DATASETS_NAMES = {DatasetType.UNEMPLOYMENT: "Chômage",
                   DatasetType.WEDDINGS : "Taux de Nuptialité",
                   DatasetType.EVOLUTION_JOB : "Taux d'Emploi",
-                  DatasetType.NATALITY : "Taux de Natalité"}
+                  DatasetType.NATALITY : "Taux de Natalité",
+                  DatasetType.ABSTENTION: "Pourcentage moyen d'abstention"}
 
 
 class RetrieveDatasetsHandler(Resource):

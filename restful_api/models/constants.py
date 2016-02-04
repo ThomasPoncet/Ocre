@@ -15,3 +15,4 @@ class DatasetType(enum.Enum):
     WEDDINGS = 2
     EVOLUTION_JOB = 3
     NATALITY = 4
+    ABSTENTION = 5

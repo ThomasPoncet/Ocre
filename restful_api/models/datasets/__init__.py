@@ -2,3 +2,4 @@ from .data_chomage import POURCENTAGE_CHOMAGE_PAR_DEPTS
 from .data_nuptialite import POURCENTAGE_TAUX_NUPTIALITE_PAR_MILLE_PAR_DEPTS
 from .data_evolution_emploi_2014 import POURCENTAGE_EVOLUTION_EMPLOI_PAR_DEPTS
 from .data_taux_natalite_par_mille_2013 import POURCENTAGE_TAUX_NATALITE_BRUT_PAR_MILLE_PAR_DEPTS
+from .abstention import POURCENTAGES_ABSTENTION_MOYEN
