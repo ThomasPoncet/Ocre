@@ -7,3 +7,6 @@ __pycache__/
 
 # Intellig config
 .idea
+
+#temp dir
+data/

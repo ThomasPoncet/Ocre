@@ -54,16 +54,34 @@
                         </ul>
                     </li>
                     <li >
-                    <a href="#"><i class="fa fa-users "></i>Listes <span class="fa arrow"></span></a>
-                         <ul class="nav nav-second-level">
-                            
+                        <a href="#"><i class="fa fa-users "></i>Listes <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+
                             <li ng-repeat="partie in available_parties">
                                 <a href="#" ng-click="selectPartie(partie)"><i class="fa" ng-class=
-                                    "{'fa-check-square' : partie == state.selected_partie,
+                                        "{'fa-check-square' : partie == state.selected_partie,
                                      'fa-times-circle' : partie != state.selected_partie}">
-                                 </i>{{partie}}</a>
+                                </i>{{partie}}</a>
                             </li>
-                                                 
+
+                        </ul>
+                    </li>
+                    <li >
+                        <a href="#"><i class="fa fa-users "></i>Tour de l'éléction <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+
+                            <li>
+                                <a href="#" ng-click="selectTour(1)"><i class="fa" ng-class=
+                                    "{'fa-check-square' : 1 == state.selected_tour,
+                                     'fa-times-circle' : 1 != state.selected_tour}">
+                                </i>Tour 1</a>
+                            </li>
+                            <li>
+                                <a href="#" ng-click="selectTour(2)"><i class="fa" ng-class=
+                                        "{'fa-check-square' : 2 == state.selected_tour,
+                                     'fa-times-circle' : 2 != state.selected_tour}">
+                                </i>Tour 2</a>
+                            </li>
                         </ul>
                     </li>
                     <li ng-if="state.selected_region" class="animate-if">
