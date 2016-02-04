@@ -69,22 +69,29 @@ angular.module('ProjectOpenData', ['nvd3'])
             return;
         }
 
-        dataProvider.loadAllResVotes(state.selected_tour, state.getSelectedPartieId(), function() {
-            dataProvider.loadDataset(state.getDatasetId(), function() {
+      //  dataProvider.loadAllResVotes(state.selected_tour, state.getSelectedPartieId(), function() {
+        //    dataProvider.loadDataset(state.getDatasetId(), function() {
 
                 $scope.data = [];
-                for(var p = 0; p < state.selected_partie; p++) {
-                    data.push({
-                        "key" : state.selected_partie[p].name,
-                        "values" : []
-                    });
+                for(var p = 0; p < state.selected_partie.length; p++) {
+                    dataProvider.getAllCorrelations(state.selected_tour, [state.selected_partie[p].id] ,state.getDatasetId(), function($scope, p) {
+                        return function (data) {
+                            $scope.data.push({
+                                "key": $scope.state.selected_partie[p].name,
+                                "values": [],
+                                "slope": data.graph_metadata.regression.slope,
+                                "intercept" : data.graph_metadata.regression.intercept
+                            });
 
-                    for(var i = 0; i < state.region_number; i++) {
-                        $scope.data[p].values.push({
-                            x : dataProvider.getResVote(state.selected_tour, i, state.selected_partie[p].id),
-                            y : dataProvider.getValueInDataSet(state.data_set, i)
-                        });
-                    }
+                            for (var i = 0; i < data.points.length; i++) {
+                                $scope.data[p].values.push({
+                                    x: data.points[i].votes_percentage * 100,
+                                    y: data.points[i].other_percentage * 100
+                                });
+                            }
+                        }
+                    }($scope, p));
+
                 }
 
 
@@ -109,8 +116,8 @@ angular.module('ProjectOpenData', ['nvd3'])
 
                     }
                 };
-            });
-        });
+         //   });
+     //   });
 	};
 
     //listener
@@ -123,7 +130,9 @@ angular.module('ProjectOpenData', ['nvd3'])
 
     var redraw = function() {
         dataProvider.getAllCorrelations(state.selected_tour, state.getSelectedPartieId(), state.getDatasetId(), function (data) {
-            cadran.create("#cadran", $scope, data);
+            if(data) {
+                cadran.create("#cadran", $scope, data);
+            }
         });
     };
 
