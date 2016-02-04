@@ -82,7 +82,7 @@ angular.module('ProjectOpenData')
      };
 
      dataProvider.getFrance = function(callback){
-         $http.get("/static/DEPARTEMENTmin.json").success(function(data){
+         $http.get("static/DEPARTEMENTmin.json").success(function(data){
         //  $http.get("/static/regions-20140306-100m.json").success(function(data){
      		callback(data);
      	});
@@ -115,8 +115,8 @@ angular.module('ProjectOpenData')
       };
 
       dataProvider.codeToIndiceRegion = function(code) {
-        return
-      }
+        return ;
+      };
 
       // Dataset list !
       dataProvider.datasetList = null;

@@ -31,11 +31,19 @@ angular.module('ProjectOpenData', ['nvd3'])
 		state.setDataSet(dataset);
 	};
 	$scope.selectPartie = function(partie) {
-		state.setSelectedPartie(partie);
+        var index = state.selected_partie.indexOf(partie);
+        if(index == -1) {
+            state.selected_partie.push(partie);
+        } else {
+            state.selected_partie.splice(index, 1);
+        }
 	};
 	$scope.unselectRegion = function() {
 		state.setSelectedRegion(null);
-	}
+	};
+    $scope.selectTour = function (tour) {
+        state.setTour(tour);
+    }
 
 }])
 .controller('PanelPlotCloud', ['$scope', 'state', 'dataProvider', function($scope, state, dataProvider) {
@@ -53,7 +61,7 @@ angular.module('ProjectOpenData', ['nvd3'])
 				x : dataProvider.getValueInDefaultDataSet(state.selected_partie, i),
 				y : dataProvider.getValueInDataSet(state.data_set, i)
 			});
-		};
+		}
 
 		$scope.options = {
 		    chart: {
@@ -85,6 +93,15 @@ angular.module('ProjectOpenData', ['nvd3'])
 	});
 
 	genData();
+
+
+}])
+.controller('CorelationCadran', ['$scope', 'state', 'dataProvider', 'cadran', function($scope, state, dataProvider, cadran) {
+    $scope.state = state;
+
+
+    //cadran.create("#cadran", $scope, );
+
 
 
 }]);
