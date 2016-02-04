@@ -49,7 +49,8 @@ class VotesQueries(DBConnector):
         """Données de base pour toutes les listes, par département"""
 
         data_by_dept = list(self.dept_col(round_number).find())
-        return [{"poll_outcome" : dept_data["poll_outome"], # donnée par liste candidate
+        return [{"dept_code" : dept_data["_id"],
+                 "poll_outcome" : dept_data["poll_outcome"], # donnée par liste candidate
                  "pourcentage_absention" : dept_data["non_voters"] / dept_data["registered_voters"],
                  "pourcentage_votants" : dept_data["voters"] / dept_data["registered_voters"],
                  "pourcentage_blancs" : dept_data["voters"] / dept_data["expressed"],
