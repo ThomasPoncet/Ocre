@@ -20,7 +20,7 @@ def make_colormap(seq):
 
 
 def make_white_gradient(center_color_rgb, normalizer):
-    color_map  = make_colormap([color_converter('white'), center_color_rgb,0.55,
+    color_map  = make_colormap([color_converter('white'), center_color_rgb, 0.50,
                                 center_color_rgb, color_converter('white')])
     return cm.ScalarMappable(norm=normalizer, cmap=color_map)
 

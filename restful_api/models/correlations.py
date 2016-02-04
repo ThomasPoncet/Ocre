@@ -5,21 +5,10 @@ import matplotlib.cm as cm
 from matplotlib.colors import rgb2hex, colorConverter
 from sklearn import preprocessing, linear_model
 
-from models.colormap import redtoblue, white_black_white
+from models.colormap import redtoblue, make_white_gradient
 from .base_queries import VotesQueries
 from .constants import DatasetType
-from .datasets import POURCENTAGE_CHOMAGE_PAR_DEPTS, \
-    POURCENTAGE_TAUX_NUPTIALITE_PAR_MILLE_PAR_DEPTS, \
-    POURCENTAGE_EVOLUTION_EMPLOI_PAR_DEPTS, \
-    POURCENTAGE_TAUX_NATALITE_BRUT_PAR_MILLE_PAR_DEPTS, \
-    POURCENTAGES_ABSTENTION_MOYEN, \
-    POURCENTAGE_PACS_PAR_DEPTS, \
-    DIPLOME_ENSEIGNEMENT_SUPERIEUR_PAR_DEPTS, \
-    NON_DIPLOME_PAR_DEPTS, \
-    LOGEMENT_SECONDAIRE_PAR_DEPTS, \
-    LOGEMENT_SOCIAUX_PAR_DEPTS, \
-    MINIMA_SOCIAUX_PAR_DEPTS, \
-    NIVEAU_DE_VIE_EN_EUROS_PAR_DEPTS
+from .datasets import *
 
 DATASET_TYPE_TO_OBJECTS = {DatasetType.UNEMPLOYMENT: POURCENTAGE_CHOMAGE_PAR_DEPTS,
                            DatasetType.WEDDINGS : POURCENTAGE_TAUX_NUPTIALITE_PAR_MILLE_PAR_DEPTS,
@@ -44,17 +33,26 @@ class DataCorellator(VotesQueries):
         anti_diag = array([-diagonal_length, diagonal_length])
 
         # on instancie le gradient de couleur sur le modèle de couleur du centre
-        normalized = mpl.colors.Normalize(vmin=-abs_maximum, vmax=abs_maximum)
+        normalizer = mpl.colors.SymLogNorm(abs_maximum/6, vmin=-abs_maximum, vmax=abs_maximum)
+        r_to_b_gradient = cm.ScalarMappable(norm=normalizer, cmap=redtoblue)
 
-        r_to_b_gradient = cm.ScalarMappable(norm=normalized, cmap=redtoblue)
-        w_b_w_gradient = cm.ScalarMappable(norm=normalized, cmap=white_black_white)
         # on calcule le produit scalaire de chaque valeur avec la diagonale
         # ensuite, on calcule la couleur à partir de la valeur de la projection sur la diagonale
         hex_color_values = []
         for i, x in enumerate(array_x):
+            # on calcule les produits scalaire du point avec la diagonale et l'antidiagonale
             scal_p_diag = dot(array([array_x[i], array_y[i]]), diag) / diagonal_length
             scal_p_antidiag = dot(array([array_x[i], array_y[i]]), anti_diag) / diagonal_length
-            hex_color_values.append(rgb2hex(colorConverter.to_rgb(r_to_b_gradient.to_rgba(scal_p_diag))))
+
+            #on calcule le gradient de couleur sur la diagonale
+            on_diag_color = colorConverter.to_rgb(r_to_b_gradient.to_rgba(scal_p_diag))
+            # puis on utilise cette couleur (en rgb) pour définir un gradient, dont la valeur sera estimée
+            # sur l'antidiagonale
+            on_diag_gradient = make_white_gradient(on_diag_color, normalizer)
+            final_color = on_diag_gradient.to_rgba(scal_p_antidiag)
+
+            #on traduit en HEX
+            hex_color_values.append(rgb2hex(colorConverter.to_rgb(final_color)))
 
         return hex_color_values, abs_maximum
 
