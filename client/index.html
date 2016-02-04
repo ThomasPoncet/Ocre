@@ -49,9 +49,12 @@
                                 <a href="#" ng-click="selectDataSet(dataset)"><i class="fa" ng-class=
                                     "{'fa-check-square' : dataset == state.data_set,
                                      'fa-times-circle' : dataset != state.data_set}">
-                                 </i>{{dataset}}</a>
+                                 </i>{{dataset.name}}</a>
                             </li>
                         </ul>
+                    </li>
+                    <li >
+                        <a href="#" ng-click="changeTour()"><i class="fa fa-users "></i>Tour de l'éléction (Tour {{state.selected_tour}})<span class="fa fa-hand-pointer-o"></span></a>
                     </li>
                     <li >
                         <a href="#"><i class="fa fa-users "></i>Listes <span class="fa arrow"></span></a>
@@ -61,31 +64,14 @@
                                 <a href="#" ng-click="selectPartie(partie)"><i class="fa" ng-class=
                                         "{'fa-check-square' : (state.selected_partie.indexOf(partie) != -1),
                                      'fa-times-circle' : (state.selected_partie.indexOf(partie) == -1)}">
-                                </i>{{partie}}</a>
+                                </i>{{partie.name}}</a>
                             </li>
 
                         </ul>
                     </li>
-                    <li >
-                        <a href="#"><i class="fa fa-users "></i>Tour de l'éléction <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
 
-                            <li>
-                                <a href="#" ng-click="selectTour(1)"><i class="fa" ng-class=
-                                    "{'fa-check-square' : 1 == state.selected_tour,
-                                     'fa-times-circle' : 1 != state.selected_tour}">
-                                </i>Tour 1</a>
-                            </li>
-                            <li>
-                                <a href="#" ng-click="selectTour(2)"><i class="fa" ng-class=
-                                        "{'fa-check-square' : 2 == state.selected_tour,
-                                     'fa-times-circle' : 2 != state.selected_tour}">
-                                </i>Tour 2</a>
-                            </li>
-                        </ul>
-                    </li>
                     <li ng-if="state.selected_region" class="animate-if">
-                        <a href="#" ng>Region séléctionné : {{state.selected_region}}<i class="fa fa-times pull-right" ng-click="unselectRegion()"></i></a>
+                        <a href="#" ng>Region séléctionné : {{state.selected_region}}<span class="fa fa-times" ng-click="unselectRegion()"></span></a>
                     </li>
                 </ul>
 
@@ -111,20 +97,20 @@
                             <nvd3 options='options' data='data'></nvd3>
                         </div>
                     </div>
-					<div class="col-md-8">
-						<div class="panel panel-default">
-							panel de visualisation des graphes
-						</div>
-					</div>
-					<div ng-controller="SettingsBoard" class="col-md-6">
-						<div class="panel panel-default">
-							Info
-							<br/>
-							region séléctionnée : {{state.selected_region}}
-						</div>
-					</div>
+					<!--<div class="col-md-8">-->
+						<!--<div class="panel panel-default">-->
+							<!--panel de visualisation des graphes-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div ng-controller="SettingsBoard" class="col-md-6">-->
+						<!--<div class="panel panel-default">-->
+							<!--Info-->
+							<!--<br/>-->
+							<!--region séléctionnée : {{state.selected_region}}-->
+						<!--</div>-->
+					<!--</div>-->
 					
-					<div class="col-md-12">
+					<div class="col-md-12" ng-controller="CorelationCadran">
 						<div class="panel panel-default" id="cadran">
 						</div>
 					</div>

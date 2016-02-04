@@ -3,7 +3,7 @@ var app = angular.module('ProjectOpenData')
   // factory function body that constructs shinyNewServiceInstance
   var map = {};
 
-  map.create = function(domId, callback_name, $scope, geojson) {
+  map.create = function(domId, callback_name, $scope, geojson, data) {
     var width = angular.element(domId).parent()[0].offsetWidth;
     var height = 370;
     /*
@@ -56,12 +56,6 @@ var app = angular.module('ProjectOpenData')
       * départements
       */
       var colorScale = d3.scale.category10();
-
-      var color = function(value) {
-        var val = Math.floor(value * (16*16)/100).toString(16);
-        // console.log("color " + value + " tp " + val);
-        return "#1111" + val
-      };
       //
     //   var echelle = svg.append("g").append("path")
     //   .attr("fill", )
@@ -71,17 +65,26 @@ var app = angular.module('ProjectOpenData')
       * propriétés suivantes
       */
 
+      var key = function(obj) {
+        return parseInt(obj, 16);
+      };
+      var color = {};
+      for(var i = 0 ; i < data.points.length; i++) {
+        color[key(data.points[i].dept_id)] = data.points[i].color;
+      }
 
       features.enter()
         .append("path")
         .attr('class', 'departement')
         .attr('fill', function(d, i) {
-          return color(dataProvider.getValueInDataSet(state.data_set, d.properties.CODE_DEPT))
+          return color[key(d.properties.CODE_DEPT)];
         })
         .attr("d", path)
         .attr("ng-click", function(d) {
           return callback_name + '("' + d.properties.CODE_DEPT + '")';
         });
+
+
 
         var template = $compile(angular.element(domId).html())($scope);
         angular.element(domId).replaceWith(template);
