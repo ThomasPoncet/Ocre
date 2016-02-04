@@ -61,7 +61,7 @@ var app = angular.module('ProjectOpenData')
         var val = Math.floor(value * (16*16)/100).toString(16);
         // console.log("color " + value + " tp " + val);
         return "#1111" + val
-      }
+      };
       //
     //   var echelle = svg.append("g").append("path")
     //   .attr("fill", )

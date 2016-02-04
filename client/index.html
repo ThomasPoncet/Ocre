@@ -54,16 +54,34 @@
                         </ul>
                     </li>
                     <li >
-                    <a href="#"><i class="fa fa-users "></i>Listes <span class="fa arrow"></span></a>
-                         <ul class="nav nav-second-level">
-                            
+                        <a href="#"><i class="fa fa-users "></i>Listes <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+
                             <li ng-repeat="partie in available_parties">
                                 <a href="#" ng-click="selectPartie(partie)"><i class="fa" ng-class=
-                                    "{'fa-check-square' : partie == state.selected_partie,
-                                     'fa-times-circle' : partie != state.selected_partie}">
-                                 </i>{{partie}}</a>
+                                        "{'fa-check-square' : (state.selected_partie.indexOf(partie) != -1),
+                                     'fa-times-circle' : (state.selected_partie.indexOf(partie) == -1)}">
+                                </i>{{partie}}</a>
                             </li>
-                                                 
+
+                        </ul>
+                    </li>
+                    <li >
+                        <a href="#"><i class="fa fa-users "></i>Tour de l'éléction <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+
+                            <li>
+                                <a href="#" ng-click="selectTour(1)"><i class="fa" ng-class=
+                                    "{'fa-check-square' : 1 == state.selected_tour,
+                                     'fa-times-circle' : 1 != state.selected_tour}">
+                                </i>Tour 1</a>
+                            </li>
+                            <li>
+                                <a href="#" ng-click="selectTour(2)"><i class="fa" ng-class=
+                                        "{'fa-check-square' : 2 == state.selected_tour,
+                                     'fa-times-circle' : 2 != state.selected_tour}">
+                                </i>Tour 2</a>
+                            </li>
                         </ul>
                     </li>
                     <li ng-if="state.selected_region" class="animate-if">
@@ -107,8 +125,7 @@
 					</div>
 					
 					<div class="col-md-12">
-						<div class="panel panel-default">
-							Settings
+						<div class="panel panel-default" id="cadran">
 						</div>
 					</div>
             </div>
@@ -143,6 +160,8 @@
 <script type="text/javascript" src="js/state.js"></script>
 <script type="text/javascript" src="js/dataProvider.js"></script>
 <script type="text/javascript" src="js/map.js"></script>
+<script type="text/javascript" src="js/cadran.js"></script>
+
 
 
 

@@ -47,6 +47,15 @@ class RetrieveVotesHandler(BaseByListeHandler):
         self.do_request_parsing()
         return VotesQueries().retrieve_total_votes_for_liste(self.round_number, self.liste_ids)
 
-class RetrieveVotesByDepts(BaseByRoundHandler):
+class RetrieveVotesByDeptsHandler(BaseByRoundHandler):
     """Recupère les totaux de votes pour un département par tour"""
-    pass
+    def get(self):
+        self.do_request_parsing()
+        return VotesQueries().retrieve_basic_vote_data(self.round_number)
+
+class RetrieveGlobalDataHandler(BaseByRoundHandler):
+    """Récupère les données globales à la france, pour un tour donnée"""
+
+    def get(self):
+        self.do_request_parsing()
+        return VotesQueries().retrieve_global_data(self.round_number)
