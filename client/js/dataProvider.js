@@ -103,7 +103,7 @@ angular.module('ProjectOpenData')
          if (typeof(dataProvider.listes[tour]) !== "undefined"){
              callback(dataProvider.listes[tour]);
          } else {
-             $http.get(apiAddress+"/listes?tour="+tour).success(function(data){
+             $http.get("static/list_tour"+tour+".json").success(function(data){
                  dataProvider.listes[tour] = data;
                  callback(dataProvider.listes[tour]);
              });
