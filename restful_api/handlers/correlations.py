@@ -23,4 +23,4 @@ class RetrieveCorrellationHandler(BaseByListeHandler):
         self.do_request_parsing()
         return DataCorellator().get_correlation_data(self.round_number,
                                                      self.liste_ids,
-                                                     DatasetType(self.args["dataset"]))
+                                                     DatasetType(self.args["dataset_id"]))
