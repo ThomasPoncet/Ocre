@@ -1,4 +1,5 @@
 import matplotlib.colors as mcolors
+import matplotlib.cm as cm
 
 
 def make_colormap(seq):
@@ -18,5 +19,13 @@ def make_colormap(seq):
     return mcolors.LinearSegmentedColormap('CustomMap', cdict)
 
 
+def make_white_gradient(center_color_rgb, normalizer):
+    color_map  = make_colormap([color_converter('white'), center_color_rgb,0.55,
+                                center_color_rgb, color_converter('white')])
+    return cm.ScalarMappable(norm=normalizer, cmap=color_map)
+
 color_converter = mcolors.ColorConverter().to_rgb
 redtoblue = make_colormap([color_converter('red'), color_converter('blue')])
+white_black_white = make_colormap(
+        [color_converter('white'), color_converter('black'),0.55,
+         color_converter('black'), color_converter('white')])
