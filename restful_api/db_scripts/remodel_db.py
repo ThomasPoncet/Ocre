@@ -5,9 +5,6 @@ db = client["polldata"]
 
 
 def remodel_poll_data(original_data_collection, cleaned_collection, listes_collection):
-    pipeline = [
-        {"$project": {"liste_%i_caption" % i : 1 for i in range(1,13)}},
-    ]
 
     all_poll_data = []
     all_lists_data = {}
