@@ -61,8 +61,8 @@ L'Architecture de ce projet est assez simple. Celle du serveur est visible sur l
 <img src = "doc/serveur.png" title = "Serveur" alt = "Serveur">
 
 
-Celle du client est présentée sur le schéma suivant :
-[image]
+Celle du client est présentée sur le schéma qui suit :
+<img src = "doc/Modele_Vue_Controleur_de_OCRE.png" title = "Client" alt = "Client">
 
 ## Outils utilisés
 ### Client (Front-end)
