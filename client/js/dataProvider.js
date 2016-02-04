@@ -163,18 +163,6 @@ angular.module('ProjectOpenData')
           });
       };
 
-      dataProvider.getValueInDefaultDataSet = function(partie, regionIndice) {
-        return Math.random();
-      };
-
-      dataProvider.getValueInDataSet = function(dataSet, regionIndice) {
-        return Math.random();
-      };
-
-      dataProvider.codeToIndiceRegion = function(code) {
-        return ;
-      };
-
       // Dataset list !
       dataProvider.datasetList = null;
       dataProvider.getDatasetList = function(callback){
@@ -201,6 +189,10 @@ angular.module('ProjectOpenData')
           }
       };
 
+    var loadAllResVotes = function(tour, partisSelectedList, callback) {};
+    var laodAllDataSet = function(datasetId, callback) {};
+    var getResVote = function(selected_tour, dept, selected_partie){};
+    //     y : dataProvider.getValueInDataSet(datasetId, dept)
       return dataProvider;
 
 
