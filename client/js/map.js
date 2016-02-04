@@ -6,6 +6,8 @@ var app = angular.module('ProjectOpenData')
   map.create = function(domId, callback_name, $scope, geojson, data) {
     var width = angular.element(domId).parent()[0].offsetWidth;
     var height = 370;
+
+    $(domId).empty();
     /*
       * On créait un nouvel objet path qui permet
       * de manipuler les données géographiques.
@@ -66,7 +68,7 @@ var app = angular.module('ProjectOpenData')
       */
 
       var key = function(obj) {
-        return parseInt(obj, 16);
+        return parseInt(obj, 12);
       };
       var color = {};
       for(var i = 0 ; i < data.points.length; i++) {
@@ -84,45 +86,10 @@ var app = angular.module('ProjectOpenData')
           return callback_name + '("' + d.properties.CODE_DEPT + '")';
         });
 
-
-
         var template = $compile(angular.element(domId).html())($scope);
-        angular.element(domId).replaceWith(template);
+        angular.element(domId).append(template);
     // });
   };
-/*
-  map.centered = null;
 
-  map.countyClickHandler = function(deps, path, width, height, callback) {
-    return function(d) {
-      var x, y, k;
-
-      if (d && map.centered !== d) {
-        var centroid = path.centroid(d);
-        x = centroid[0];
-        y = centroid[1];
-        k = 5;
-        map.centered = d;
-        //on appelle le callback
-        callback(d3.select(this).attr("data-code"));
-      } else {
-        x = width / 2;
-        y = height / 2;
-        k = 1;
-        map.centered = null;
-      }
-
-      deps.selectAll("path")
-      .classed("active", map.centered && function(d) { return d === map.centered; });
-
-      var trStr = "translate(" + width / 2 + "," + height / 2 + ")" +
-      "scale(" + k + ")translate(" + -x + "," + -y + ")";
-
-      deps.transition()
-      .duration(1000)
-      .attr("transform", trStr);
-    };
-  };
-*/
   return map;
 }]);

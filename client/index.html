@@ -45,7 +45,7 @@
                         <a href="#"><i class="fa fa-database "></i>DataSets <span class="fa arrow"></span></a>
                          <ul class="nav nav-second-level">
                             
-                            <li ng-repeat="dataset in available_dataSet">
+                            <li ng-repeat="dataset in state.available_dataSet">
                                 <a href="#" ng-click="selectDataSet(dataset)"><i class="fa" ng-class=
                                     "{'fa-check-square' : dataset == state.data_set,
                                      'fa-times-circle' : dataset != state.data_set}">
@@ -60,7 +60,7 @@
                         <a href="#"><i class="fa fa-users "></i>Listes <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
 
-                            <li ng-repeat="partie in available_parties">
+                            <li ng-repeat="partie in state.available_parties">
                                 <a href="#" ng-click="selectPartie(partie)"><i class="fa" ng-class=
                                         "{'fa-check-square' : (state.selected_partie.indexOf(partie) != -1),
                                      'fa-times-circle' : (state.selected_partie.indexOf(partie) == -1)}">
@@ -86,9 +86,6 @@
             			<div class="panel panel-default">
 							<div id="map">
 							</div>
-                            <!-- Only for test !!! -->
-							<!-- <div id="region">
-							</div> -->
 						</div>
 					</div><div ng-controller="PanelPlotCloud" class="col-md-8">
                         <div class="panel panel-default">
@@ -97,18 +94,6 @@
                             <nvd3 options='options' data='data'></nvd3>
                         </div>
                     </div>
-					<!--<div class="col-md-8">-->
-						<!--<div class="panel panel-default">-->
-							<!--panel de visualisation des graphes-->
-						<!--</div>-->
-					<!--</div>-->
-					<!--<div ng-controller="SettingsBoard" class="col-md-6">-->
-						<!--<div class="panel panel-default">-->
-							<!--Info-->
-							<!--<br/>-->
-							<!--region séléctionnée : {{state.selected_region}}-->
-						<!--</div>-->
-					<!--</div>-->
 					
 					<div class="col-md-12" ng-controller="CorelationCadran">
 						<div class="panel panel-default" id="cadran">
