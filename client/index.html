@@ -82,21 +82,48 @@
         <div id="page-wrapper">
             <div id="page-inner">
                 <div class="row">
-            		<div ng-controller="MapController" class="col-md-4">
-            			<div class="panel panel-default">
-							<div id="map">
-							</div>
-                            <!-- Only for test !!! -->
-							<!-- <div id="region">
-							</div> -->
-						</div>
-					</div><div ng-controller="PanelPlotCloud" class="col-md-8">
-                        <div class="panel panel-default">
-                            Camenbert
-                        
-                            <nvd3 options='options' data='data'></nvd3>
+                    <div class="col-md-7">
+                        <div ng-controller="MapController" >
+                            <div class="panel panel-default">
+                                <div id="map">
+                                </div>
+                                <!-- Only for test !!! -->
+                                <!-- <div id="region">
+                                </div> -->
+                            </div>
+
+                        </div>
+                        <div id="legend" class="panel panel-success">
+                            <div class="panel-heading">Légende</div>
+                            <div class="panel-body">
+                                Choisissez une ou plusieurs listes électorales, et ensembles de données (DataSet)
+                                à correller avec ces données.<br/>
+                                <strong>Voici lire les couleurs des départements:
+                                    <ul>
+                                        <li>le rouge, relativement aux autres département, correspond à des valeurs fortes
+                                            pour le vote et le dataset sélectionné</li>
+                                        <li>le bleu, relativement aux autres département, correspond à des valeurs faibles
+                                            pour le vote et le dataset sélectionné</li>
+                                        <li>en gris (ou en plu clair), si on a pas de couplage entre le vote
+                                            et la valeur du dataset</li>
+                                    </ul>
+                                </strong>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="col-md-5">
+                        <div ng-controller="PanelPlotCloud" >
+                            <div class="panel panel-default">
+                                <nvd3 options='options' data='data'></nvd3>
+                            </div>
+                        </div>
+                        <div  ng-controller="CorelationCadran">
+                            <div class="panel panel-default" id="cadran">
+                            </div>
+					</div>
+                    </div>
+
 					<!--<div class="col-md-8">-->
 						<!--<div class="panel panel-default">-->
 							<!--panel de visualisation des graphes-->
@@ -110,10 +137,7 @@
 						<!--</div>-->
 					<!--</div>-->
 					
-					<div class="col-md-12" ng-controller="CorelationCadran">
-						<div class="panel panel-default" id="cadran">
-						</div>
-					</div>
+
             </div>
             <!-- /. PAGE INNER  -->
         </div>
