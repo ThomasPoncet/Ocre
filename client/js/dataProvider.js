@@ -5,51 +5,51 @@ angular.module('ProjectOpenData')
 
 
     /**
-     * Vote first tour management
+     * Vote first tour management OBSELETE
      **/
-    dataProvider.voteT1 = {};
-    dataProvider.getVoteT1Reg = function(codeReg, codeParti, callback) {
-        if (typeof(voteT1[codeReg]) != undefined) {
-            if (typeof(voteT1[codeReg][codeParti]) != undefined) {
-                callback(teT1[codeReg][codeParti]);
-            } else {
-                $http.get(apiAddress+"/getVoteT1/?codeReg="+"codeReg&codeParti="+codeParti).success(function(data){
-                    voteT1[codeReg][codeParti] = data;
-                    callback(voteT1[codeReg][codeParti]);
-                });
-            }
-        } else {
-            voteT1[codeReg] = {};
-            $http.get(apiAddress+"/getVoteT1/?codeReg="+"codeReg&codeParti="+codeParti).success(function(data){
-                voteT1[codeReg][codeParti] = data;
-                callback(voteT1[codeReg][codeParti]);
-            });
-        }
-    };
+    // dataProvider.voteT1 = {};
+    // dataProvider.getVoteT1Reg = function(codeReg, codeParti, callback) {
+    //     if (typeof(voteT1[codeReg]) != undefined) {
+    //         if (typeof(voteT1[codeReg][codeParti]) != undefined) {
+    //             callback(teT1[codeReg][codeParti]);
+    //         } else {
+    //             $http.get(apiAddress+"/getVoteT1/?codeReg="+"codeReg&codeParti="+codeParti).success(function(data){
+    //                 voteT1[codeReg][codeParti] = data;
+    //                 callback(voteT1[codeReg][codeParti]);
+    //             });
+    //         }
+    //     } else {
+    //         voteT1[codeReg] = {};
+    //         $http.get(apiAddress+"/getVoteT1/?codeReg="+"codeReg&codeParti="+codeParti).success(function(data){
+    //             voteT1[codeReg][codeParti] = data;
+    //             callback(voteT1[codeReg][codeParti]);
+    //         });
+    //     }
+    // };
 
     /**
-     * Vote second tour management
+     * Vote second tour management OBSELET
      **/
-     dataProvider.voteT2 = {};
-     dataProvider.getVoteT2Reg = function(codeReg, codeParti, callback) {
-         if (typeof(voteT2[codeReg]) != undefined) {
-             if (typeof(voteT2[codeReg][codeParti]) != undefined) {
-                 callback(voteT2[codeReg].codeParti);
-             } else {
-                 $http.get(apiAddress+"/getVoteT2/?codeReg="+"codeReg&codeParti="+codeParti).success(function(data){
-                     voteT2[codeReg][codeParti] = data;
-                     callback(voteT2[codeReg][codeParti]);
-                 });
-             }
-         } else {
-             voteT2[codeReg] = {};
-             $http.get(apiAddress+"/getVoteT2/?codeReg="+"codeReg&codeParti="+codeParti).success(function(data){
-                 voteT2[codeReg][codeParti] = data;
-                 callback(voteT2[codeReg][codeParti]);
-             });
-         }
-     };
-    //  EN ATTENTE DE LA DECISION
+    //  dataProvider.voteT2 = {};
+    //  dataProvider.getVoteT2Reg = function(codeReg, codeParti, callback) {
+    //      if (typeof(voteT2[codeReg]) != undefined) {
+    //          if (typeof(voteT2[codeReg][codeParti]) != undefined) {
+    //              callback(voteT2[codeReg].codeParti);
+    //          } else {
+    //              $http.get(apiAddress+"/getVoteT2/?codeReg="+"codeReg&codeParti="+codeParti).success(function(data){
+    //                  voteT2[codeReg][codeParti] = data;
+    //                  callback(voteT2[codeReg][codeParti]);
+    //              });
+    //          }
+    //      } else {
+    //          voteT2[codeReg] = {};
+    //          $http.get(apiAddress+"/getVoteT2/?codeReg="+"codeReg&codeParti="+codeParti).success(function(data){
+    //              voteT2[codeReg][codeParti] = data;
+    //              callback(voteT2[codeReg][codeParti]);
+    //          });
+    //      }
+    //  };
+    //  OBSELETE
     //  dataProvider.votesDep = {};
     //  dataProvider.getVote = function(tour, codesPartisListe, dept, callback){
     //      for (codeParti of codesPartisListe) {
@@ -189,11 +189,15 @@ angular.module('ProjectOpenData')
           }
       };
 
-    var loadAllResVotes = function(tour, partisSelectedList, callback) {};
-    var laodAllDataSet = function(datasetId, callback) {};
-    var getResVote = function(selected_tour, dept, selected_partie){};
-    //     y : dataProvider.getValueInDataSet(datasetId, dept)
-      return dataProvider;
+    dataProvider.loadAllResVotes = function(tour, partisSelectedList, callback){
+
+    };
+    dataProvider.laodAllDataSet = function(datasetId, callback){
+
+    };
+    dataProvider.getResVote = function(selected_tour, dept, selected_partie){};
+    dataProvider.getValueInDataSet = function(datasetId, dept){};
+    return dataProvider;
 
 
 }]);
