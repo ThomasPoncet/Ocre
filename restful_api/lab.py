@@ -1,12 +1,13 @@
-from numpy import dot, array, mean
+from numpy import dot, array, mean, ndarray
 from numpy.linalg.linalg import norm
 import matplotlib as mpl
 import matplotlib.cm as cm
+import matplotlib.pyplot as plt
 from matplotlib.colors import rgb2hex, colorConverter
 from sklearn import preprocessing, linear_model
 
 from models.base_queries import DBConnector, VotesQueries
-from models.constants import DatasetType
+from models.constants import DatasetType, RoundNumber
 from models.datasets import POURCENTAGE_CHOMAGE_PAR_DEPTS, \
     POURCENTAGE_TAUX_NUPTIALITE_PAR_MILLE_PAR_DEPTS, \
     POURCENTAGE_EVOLUTION_EMPLOI_PAR_DEPTS, \
@@ -56,9 +57,13 @@ class DataCorellator(VotesQueries):
                            "votes_percentage" : dept_data["vote_percentage"],
                            "other_percentage" : dataset[dept_data["_id"]] / 100})
 
-        rescaled_x = preprocessing.scale(array(data_x))
-        rescaled_y = preprocessing.scale(array(data_y))
-        colors, max_val = self._compute_colors(rescaled_x, rescaled_y)
+        data_x_array = array(data_x).reshape((len(data_x),1))
+        data_y_array = array(data_y)
+
+        data_x_train = data_x_array[:-10]
+        data_x_test = data_x_array[-10:]
+        data_y_train = data_y_array[:-10]
+        data_y_test = data_y_array[-10:]
 
         # plt.plot(rescaled_x, rescaled_y, "ro")
         # plt.axhline(y=0, color='k')
@@ -66,17 +71,27 @@ class DataCorellator(VotesQueries):
         # plt.show()
 
         model = linear_model.LinearRegression()
-        model.fit(rescaled_x, rescaled_y)
+        model.fit(data_x_array, data_y_array)
         # The coefficients
-        print('Coefficients: \n', regr.coef_)
+        print('Coefficients: \n', model.coef_)
         # The mean square error
-        print("Residual sum of squares: %.2f"
-              % np.mean((regr.predict(diabetes_X_test) - diabetes_y_test) ** 2))
+        print("Residual sum of squares: %f"
+              % mean((model.predict(data_x_test) - data_y_test) ** 2))
 
-        for i, x in enumerate(rescaled_x):
-            points[i]["votes_normalized"] = rescaled_x[i]
-            points[i]["other_normalized"] = rescaled_y[i]
-            points[i]["color"] = colors[i]
+        # Explained variance score: 1 is perfect prediction
+        print('Variance score: %.2f' % model.score(data_x_test, data_y_test))
 
-        return {"points" : points,
-                "graph_metadata": {"max" : max_val}}
+        # Plot outputs
+        plt.scatter(data_x_test, data_y_test,  color='black')
+        plt.scatter(data_x_train, data_y_train,  color='red')
+        plt.scatter(data_x_array, model.predict(data_x_array), color='blue')
+
+        plt.xticks(())
+        plt.yticks(())
+
+        plt.show()
+
+
+
+correlator = DataCorellator()
+correlator.get_correlation_data(RoundNumber.FIRST, ["LFN"], DatasetType.UNEMPLOYMENT)
