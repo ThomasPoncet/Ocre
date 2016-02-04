@@ -66,6 +66,10 @@ angular.module('ProjectOpenData')
     //          });
     //      }
     //  };
+
+    /**
+     * Informations pour la carte et le graphe (tout y est précalculé)
+     **/
     dataProvider.allCorrelations = {};
     dataProvider.getAllCorrelations = function(tour, codesPartiListe, datasetId, callback){
         if (typeof(dataProvider.allCorrelations[tour]) != "undefined"){
@@ -92,6 +96,18 @@ angular.module('ProjectOpenData')
                 dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)] = {};
                 dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)][datasetId] = data;
                 callback(dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)][datasetId]);
+            });
+        }
+    };
+
+    dataProvider.allVoteInfos = {};
+    dataProvider.getAllVoteInfos = function(tour, callback){
+        if (typeof(dataProvider.allVoteInfos[tour]) !== "undefined"){
+            callback(dataProvider.allVoteInfos[tour]);
+        } else {
+            $http.get(apiAddress+"/basic_data?tour="+tour).success(function(data){
+                dataProvider.allVoteInfos[tour] = data;
+                callback(dataProvider.allVoteInfos[tour]);
             });
         }
     };
