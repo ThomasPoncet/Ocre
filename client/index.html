@@ -30,7 +30,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Open Data</a>
+                <a class="navbar-brand" href="index.html">OCRE</a>
             </div>
         </nav>
         <!-- /. NAV TOP  -->
@@ -54,7 +54,7 @@
                         </ul>
                     </li>
                     <li >
-                        <a href="#" ng-click="changeTour()"><i class="fa fa-users "></i>Tour de l'éléction (Tour {{state.selected_tour}})<span class="fa fa-hand-pointer-o"></span></a>
+                        <a href="#" ng-click="changeTour()"><i class="fa fa-archive "></i>Tour de l'élection (Tour {{state.selected_tour}})<span class="fa fa-hand-pointer-o"></span></a>
                     </li>
                     <li >
                         <a href="#"><i class="fa fa-users "></i>Listes <span class="fa arrow"></span></a>
@@ -82,7 +82,7 @@
         <div id="page-wrapper">
             <div id="page-inner">
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-md-6">
                         <div ng-controller="MapController" >
                             <div class="panel panel-default">
                                 <div id="map">
@@ -113,23 +113,31 @@
                         </div>
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div ng-controller="PanelPlotCloud" >
                             <div class="panel panel-default">
-                                <nvd3 options='options' data='data'></nvd3>
+                                <div class="panel-body">
+                                    <nvd3 options='options' data='data'></nvd3>
+
+                                Les points représentent un département,
+                                avec une nuance de couleur pour chaque nuage de points correspondant à une liste. Les droites
+                                représentent la régression linéaire associée à chaque nuage de points.
+                                </div>
                             </div>
+
                         </div>
                         <div  ng-controller="CorelationCadran">
                             <div class="panel panel-default" >
                                 <div class="panel-body">
                                     <div class="panel panel-default" id="cadran">
                                     </div>
-                                Chaque point représente un département
+                                    Chaque point représente un département, avec pour ordonnée le pourcentage de
+                                    vote cumulé sur toutes les listes, et en abcsisse sa valeur pour le dataset considéré.
                                 </div>
 
                             </div>
 
-					    </div>
+                        </div>
                         <div ng-controller="PieChart" >
                             <div class="panel panel-default">
                                 <nvd3 options='options' data='data'></nvd3>
@@ -145,6 +153,8 @@
     <!-- /. WRAPPER  -->
     <div id="footer-sec">
         Team OpenData - Georges Mintegui - Thomas Poncet - Hadrien Titeux - Louis van Beurden | Design By : <a href="http://www.binarytheme.com/" target="_blank">BinaryTheme.com</a>
+        <br/>
+        Propulsé par AngularJS, Flask, Nginx, MongoDB et beaucoup, beaucoup de café.
     </div>
     <!-- /. FOOTER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
