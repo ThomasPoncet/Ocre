@@ -1,15 +1,16 @@
-from numpy import dot
+from numpy import dot, array
 from numpy.linalg.linalg import norm
 import matplotlib as mpl
 import matplotlib.cm as cm
-from matplotlib.colors import rgb2hex
-from matplotlib.colors import colorConverter
+from matplotlib.colors import rgb2hex, colorConverter
 from sklearn import preprocessing
-from numpy import array
 
 from .base_queries import DBConnector, VotesQueries
 from .constants import DatasetType
-from .datasets import POURCENTAGE_CHOMAGE_PAR_DEPTS, POURCENTAGE_TAUX_NUPTIALITE_PAR_MILLE_PAR_DEPTS, POURCENTAGE_EVOLUTION_EMPLOI_PAR_DEPTS, POURCENTAGE_TAUX_NATALITE_BRUT_PAR_MILLE_PAR_DEPTS
+from .datasets import POURCENTAGE_CHOMAGE_PAR_DEPTS, \
+    POURCENTAGE_TAUX_NUPTIALITE_PAR_MILLE_PAR_DEPTS, \
+    POURCENTAGE_EVOLUTION_EMPLOI_PAR_DEPTS, \
+    POURCENTAGE_TAUX_NATALITE_BRUT_PAR_MILLE_PAR_DEPTS
 
 
 DATASET_TYPE_TO_OBJECTS = {DatasetType.UNEMPLOYMENT: POURCENTAGE_CHOMAGE_PAR_DEPTS,
@@ -42,9 +43,11 @@ class DataCorellator(VotesQueries):
 
     def get_correlation_data(self,round_number, liste_id, dataset_type):
         points = []
+        # on sélectionne le dataset en fonction de l'argument
         dataset = DATASET_TYPE_TO_OBJECTS[dataset_type]
         poll_data = self.retrieve_total_votes_for_liste(round_number, liste_id)
-        #extraction des données dans un dico propre
+
+        # on range les des données dans un dico propre
         data_x, data_y = [],[]
         for dept_data in poll_data:
             data_x.append(dept_data["vote_percentage"])
