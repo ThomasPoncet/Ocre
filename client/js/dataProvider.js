@@ -72,9 +72,9 @@ angular.module('ProjectOpenData')
      **/
     dataProvider.allCorrelations = {};
     dataProvider.getAllCorrelations = function(tour, codesPartiListe, datasetId, callback){
-        if(codesPartiListe.length == 0 || typeof(datasetId)=="undefined"){
-            callback([]);
-        }
+        if (codesPartiListe.length == 0 || typeof(datasetId) == "undefined") {
+            callback(null);
+        } else {
         if (typeof(dataProvider.allCorrelations[tour]) != "undefined"){
             if (typeof(dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)]) != "undefined") {
                 if (typeof(dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)][datasetId]) != "undefined") {
@@ -100,7 +100,7 @@ angular.module('ProjectOpenData')
                 dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)][datasetId] = data;
                 callback(dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)][datasetId]);
             });
-        }
+        }}
     };
 
     /**
@@ -220,8 +220,17 @@ angular.module('ProjectOpenData')
         }
     };
 
-    dataProvider.laodAllDataSet = function(datasetId, callback){
-
+    //Load on the client the dataset with datasetId
+    dataProvider.allDataSets = {};
+    dataProvider.loadDataset = function(datasetId, callback){
+        if (typeof(dataProvider.allDataSets[''+datasetId]) != "undefined"){
+            callback();
+        } else {
+            $http.get(apiAddress+"/dataset_raw?dataset_id="+datasetId).success(function(data){
+                dataProvider.allDataSets[''+datasetId] = data;
+                callback();
+            });
+        }
     };
 
     dataProvider.getResVote = function(tour, dept, parti){
@@ -231,7 +240,35 @@ angular.module('ProjectOpenData')
             }
         }
     };
-    dataProvider.getValueInDataSet = function(datasetId, dept){};
+    dataProvider.getValueInDataSet = function(datasetId, dept){
+        for (dataDept of dataProvider.allDataSets[''+datasetId]) {
+            if (''+dataDept.id == ''+dept) {
+                return dataDept.percentage;
+            }
+        }
+    };
+
+    dataProvider.getColor = function(listId, callback){
+        dataProvider.getListes(1, function(allListes){
+            for (liste of allListes) {
+                if (''+liste.id == ''+listId) {
+                    callback(liste.color);
+                }
+            }
+        });
+    };
+
+    dataProvider.getVotesForPieChart = function(tour, dept, callback){
+        dataProvider.getDeptVoteInfos(tour, dept, function(votes){
+            for (var i = 0; i < votes.poll_outcome.length; i++) {
+                dataProvider.getColor(votes.poll_outcome[i].liste_id, function(colorList){
+                    votes.poll_outcome[i].color = colorList;
+                    console.log(colorList);
+                });
+            }
+            callback(votes.poll_outcome);
+        });
+    };
 
 
     return dataProvider;
