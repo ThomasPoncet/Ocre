@@ -5,7 +5,7 @@ Voici les instructions tant attendues pour faire tourner l'API rest nécessaire 
 ## Les dépendances logicielles
 
 Il faut installer mongodb, mais la version 3.0. Donc, pour Ubuntu et le reste, en général pas encore dans les dépôts!
-Aller ici pour apprendre à faire l'install https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-14-04
+Aller ici pour apprendre à faire l'installation https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-14-04
 
 Ensuite, il faut python3. Pour ubuntu c'est comme ça:
 
@@ -20,6 +20,9 @@ Si des erreurs sortent à l'install du module sklearn, vérifiez que vous avez l
 
 ## Le Remplissage de la base
 
+D'abord, téléchargez les fichiers CSV des données:
+
+### Façon 1 : à la mano
 Pour insérer les données brutes dans la base (à partir des deux CSV), il faut faire
 
 `mongoimport --db polldata --collection t1_full --type csv --headerline regionales-2015-communes.csv`
@@ -32,6 +35,15 @@ Pour le tour 2.
 C'est pas fini. Trouvez le script "database_loader.py", et lancez le avec
 
 `python3 database_loader.py`
+
+###Façon 2 : en automatique
+
+Lancez le script de chargement *automatique* des données dans la base avec
+
+```bash
+cd restful_api/
+./reload_db.sh fichier_tour1.csv fichier_tour2.csv
+```
 
 C'est bon pour la base
 
@@ -73,7 +85,7 @@ server {
 Après, faut ln en soft la config, et recharger le serveur nginx
 
 ```bash
-sudo ln -s /etc/nginx/site-available/ocre /etc/nginx/site-enabled/ocre
+sudo ln -s /etc/nginx/site-available/ocre /etc/nginx/sites-enabled/ocre
 sudo service nginx restart
 ```
 
@@ -84,4 +96,5 @@ Puis rajouter dans /etc/hosts cette ligne
 
 ## Recharger les bases
 
-Lancer le script `reload_db.sh`.
+Si les données ont pu changer, ou que vous avez planté la base pour une raison ou une autre, il est toujours possible 
+de recharger la base: il suffit de lancer le script `reload_db.sh`.
