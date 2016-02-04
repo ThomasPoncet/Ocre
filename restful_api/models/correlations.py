@@ -33,8 +33,9 @@ class DataCorellator(VotesQueries):
         anti_diag = array([-diagonal_length, diagonal_length])
 
         # on instancie le gradient de couleur sur le modèle de couleur du centre
-        normalizer = mpl.colors.SymLogNorm(abs_maximum/6, vmin=-abs_maximum, vmax=abs_maximum)
-        r_to_b_gradient = cm.ScalarMappable(norm=normalizer, cmap=redtoblue)
+        linear_normalizer = mpl.colors.Normalize(vmin=-abs_maximum, vmax=abs_maximum)
+        log_normalizer = mpl.colors.SymLogNorm(abs_maximum/5, vmin=-abs_maximum, vmax=abs_maximum)
+        r_to_b_gradient = cm.ScalarMappable(norm=linear_normalizer, cmap=redtoblue)
 
         # on calcule le produit scalaire de chaque valeur avec la diagonale
         # ensuite, on calcule la couleur à partir de la valeur de la projection sur la diagonale
@@ -48,7 +49,7 @@ class DataCorellator(VotesQueries):
             on_diag_color = colorConverter.to_rgb(r_to_b_gradient.to_rgba(scal_p_diag))
             # puis on utilise cette couleur (en rgb) pour définir un gradient, dont la valeur sera estimée
             # sur l'antidiagonale
-            on_diag_gradient = make_white_gradient(on_diag_color, normalizer)
+            on_diag_gradient = make_white_gradient(on_diag_color, log_normalizer)
             final_color = on_diag_gradient.to_rgba(scal_p_antidiag)
 
             #on traduit en HEX
