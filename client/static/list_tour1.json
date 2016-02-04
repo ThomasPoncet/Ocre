@@ -1,0 +1,78 @@
+[
+    {
+        "id": "LEXG",
+        "name": "Extrême gauche"
+    },
+    {
+        "id": "LLR",
+        "name": "Les Républicains"
+    },
+    {
+        "id": "LDVG",
+        "name": "Divers gauche"
+    },
+    {
+        "id": "LMDM",
+        "name": "Modem"
+    },
+    {
+        "id": "LDVD",
+        "name": "Divers droite"
+    },
+    {
+        "id": "LRDG",
+        "name": "Liste Corse : La Garantie Républicaine"
+    },
+    {
+        "id": "LUG",
+        "name": "Union de la gauche"
+    },
+    {
+        "id": "LFN",
+        "name": "Front National"
+    },
+    {
+        "id": "LDLF",
+        "name": "Debout La France"
+    },
+    {
+        "id": "LREG",
+        "name": "Liste régionaliste"
+    },
+    {
+        "id": "LECO",
+        "name": "Ecologistes Indépendants"
+    },
+    {
+        "id": "LUD",
+        "name": "Union de la Droite"
+    },
+    {
+        "id": "LEXD",
+        "name": "Extrême Droite"
+    },
+    {
+        "id": "LCOM",
+        "name": "Liste présentée par le PCF hors de l'alliance du Front de gauche"
+    },
+    {
+        "id": "LVEC",
+        "name": "Europe Écologie Les Verts"
+    },
+    {
+        "id": "LSOC",
+        "name": "Parti Socialiste"
+    },
+    {
+        "id": "LFG",
+        "name": "Front de Gauche"
+    },
+    {
+        "id": "LVEG",
+        "name": "Rass. EELV, PG, Nvelle gauche socialiste, Nvelle Donne"
+    },
+    {
+        "id": "LDIV",
+        "name": "Liste Diverse"
+    }
+]
