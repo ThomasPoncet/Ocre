@@ -251,6 +251,28 @@ angular.module('ProjectOpenData')
         return dataProvider.allResVotes[tour][parti].graph_metadata;
     };
 
+    dataProvider.getColor = function(listId, callback){
+        dataProvider.getListes(1, function(allListes){
+            for (liste of allListes) {
+                if (''+liste.id == ''+listId) {
+                    callback(liste.color);
+                }
+            }
+        });
+    };
+
+    dataProvider.getVotesForPieChart = function(tour, dept, callback){
+        dataProvider.getDeptVoteInfos(tour, dept, function(votes){
+            for (var i = 0; i < votes.poll_outcome.length; i++) {
+                dataProvider.getColor(votes.poll_outcome[i].liste_id, function(colorList){
+                    votes.poll_outcome[i].color = colorList;
+                    console.log(colorList);
+                });
+            }
+            callback(votes.poll_outcome);
+        });
+    };
+
 
     return dataProvider;
 

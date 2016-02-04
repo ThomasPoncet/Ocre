@@ -51,13 +51,18 @@ Avec les sources :
 Nous avons utilisé les données de l'INSEE pour pouvoir les confronter aux résultats des élections. Nous avons fait le choix de prendre le taux de nuptialité, de chomage, de natalité et l'évolution des l'emploi en France. Ce sont des données départemantales.
 
 ## Traitements opérés
-
+Pour normaliser les données, nous avons utilisée une fonction de la bibliothèque sklearn, usuellement utilisée pour la fouille de donnée (recentrage et division par la variance).
+Ensuite, Nous avons fait une régression linaire.
 
 
 ## Architecture
-L'Architecture de ce projet est assez simple. Elle est visible sur les schémas suivants :
+L'Architecture de ce projet est assez simple. Celle du serveur est visible sur le schéma suivant :
 
 <img src = "doc/serveur.png" title = "Serveur" alt = "Serveur">
+
+
+Celle du client est présentée sur le schéma suivant :
+[image]
 
 ## Outils utilisés
 ### Client (Front-end)
@@ -68,6 +73,7 @@ Nous avons récupéré le shapefile des départements français sur le site IGN 
 
 #### D3JS
 
+#### NDV chart
 
 
 ### Serveur (Back-end)
