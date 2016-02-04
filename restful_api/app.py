@@ -2,7 +2,8 @@ from flask import Flask
 from flask_restful import Api
 
 from handlers import RetrieveListesHandler, RetrieveVotesHandler, RetrieveDatasetsHandler, \
-    RetrieveCorrellationHandler, RetrieveVotesByDeptsHandler, RetrieveGlobalDataHandler
+    RetrieveCorrellationHandler, RetrieveVotesByDeptsHandler, RetrieveGlobalDataHandler, \
+    RetrieveDatasetDataHandler
 
 app = Flask(__name__)
 api = Api(app)
@@ -23,6 +24,9 @@ api.add_resource(RetrieveGlobalDataHandler, "/api/global")
 
 #récupération de la liste des datasets
 api.add_resource(RetrieveDatasetsHandler, "/api/datasets")
+
+#récupération juste des datasets
+api.add_resource(RetrieveDatasetDataHandler, "/api/dataset_raw")
 
 #récupération de la liste des datasets
 api.add_resource(RetrieveCorrellationHandler, "/api/correlation")

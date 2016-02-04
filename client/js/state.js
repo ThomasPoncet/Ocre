@@ -12,7 +12,7 @@ angular.module('ProjectOpenData')
 		this.selected_partie = partie;
 	};
 
-	this.data_set = 0;
+	this.data_set = 1;
 
 	this.setDataSet = function(dataSet) {
 		this.data_set = dataSet;

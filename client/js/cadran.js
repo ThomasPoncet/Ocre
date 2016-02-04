@@ -3,28 +3,33 @@ angular.module('ProjectOpenData')
     var cadran = {};
 
     cadran.create = function(domId, $scope, geojson) {
-        var width = angular.element(domId).parent()[0].offsetWidth;
+        var width = angular.element(domId)[0].offsetWidth;
         var height = 370;
 
 
         var max_min = geojson.graph_metadata.max;
 
         var xValue = function(d) { return +d.votes_normalized;}, // data -> value
-            xScale = d3.scale.linear().range([-max_min, +max_min]), // value -> display
+            xScale = d3.scale.linear().domain([-max_min, +max_min]).range([-width/2, width/2]), // value -> display
             xMap = function(d) { return xScale(xValue(d));}, // data -> display
-            xAxis = d3.svg.axis().scale(xScale).orient("bottom");
+            xAxis = d3.svg.axis().scale(xScale).orient("up");
 
 // setup y
         var yValue = function(d) { return +d.other_normalized;}, // data -> value
-            yScale = d3.scale.linear().range([-max_min, +max_min]), // value -> display
+            yScale = d3.scale.linear().domain([-max_min, +max_min]).range([-height/2, height/2]), // value -> display
             yMap = function(d) { return yScale(yValue(d));}, // data -> display
             yAxis = d3.svg.axis().scale(yScale).orient("left");
 
 // setup fill color
         var cValue = function(d) { return d.color;};
 
-// add the graph canvas to the body of the webpage
-        var svg = d3.select(domId).append("svg")
+        var old_svg = d3.select(domId).select("svg");
+        if(old_svg) {
+            old_svg.remove();
+        }
+
+        var svg = d3.select(domId)
+            .append("svg")
             .attr("width", width)
             .attr("height", height)
             .append("g");
@@ -43,37 +48,25 @@ angular.module('ProjectOpenData')
             // x-axis
             svg.append("g")
                 .attr("class", "x axis")
-                .attr("transform", "translate(0," + height/2 + ")")
-                .call(xAxis)
-                .append("text")
-                .attr("class", "label")
-                .attr("x", width)
-               .attr("y", -6)
-                .style("text-anchor", "end")
-                .text("Calories");
+                .attr("transform", "translate(" + width/2 +", " + height/2 + ")")
+                .call(xAxis);
 
             // y-axis
             svg.append("g")
                 .attr("class", "y axis")
-                .attr("transform", "translate(0," + width/2 + ")")
-                .call(yAxis)
-                .append("text")
-                .attr("class", "label")
-                .attr("transform", "rotate(-90)")
-                .attr("y", 6)
-                .attr("dy", ".71em")
-                .style("text-anchor", "end")
-                .text("Protein (g)");
+                .attr("transform", "translate(" + width/2 +", " + height/2 + ")")
+                .call(yAxis);
 
             // draw dots
             svg.selectAll(".dot")
                 .data(geojson.points)
                 .enter().append("circle")
+                .attr("transform", "translate(" + width/2 +", " + height/2 + ")")
                 .attr("class", "dot")
                 .attr("r", 3.5)
                 .attr("cx", xMap)
                 .attr("cy", yMap)
-                .style("fill", function(d) { return cValue(d);})
+                .style("fill", function(d) { return cValue(d);});
                /* .on("mouseover", function(d) {
                     tooltip.transition()
                         .duration(200)
@@ -90,7 +83,7 @@ angular.module('ProjectOpenData')
                 });*/
 
             // draw legend
-            var legend = svg.selectAll(".legend")
+        /*    var legend = svg.selectAll(".legend")
                 .data(color.domain())
                 .enter().append("g")
                 .attr("class", "legend")
@@ -109,6 +102,8 @@ angular.module('ProjectOpenData')
                 .attr("y", 9)
                 .attr("dy", ".35em")
                 .style("text-anchor", "end")
-                .text(function(d) { return d;});
+                .text(function(d) { return d;});*/
     };
+
+    return cadran;
 }]);
