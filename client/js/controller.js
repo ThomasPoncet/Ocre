@@ -7,10 +7,10 @@ angular.module('ProjectOpenData', ['nvd3'])
 	});
 
 	// Only for test !
-	// dataProvider.getAllVotesDept("1", ["LFN", "LUD"], "38", function(listes){
+	// dataProvider.getAllCorrelations("1", ["LFN", "LUD"], "2", function(listes){
  // 		console.log(listes);
 	// 	setTimeout(function(){
-	// 		dataProvider.getAllVotesDept("1", ["LFN", "LUD"], "39", function(listes){
+	// 		dataProvider.getAllCorrelations("1", ["LFN", "LUD"], "2", function(listes){
 	// 	 		console.log(listes);
 	// 		});
 	// 	}, 3000);
