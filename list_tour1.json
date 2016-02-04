@@ -1,0 +1,80 @@
+[
+    {
+        "id": "LEXG",
+        "name": "Liste d'extrême gauche"
+        ]
+    },
+    {
+        "id": "LLR",
+        "name": " Liste Les Républicains"
+    },
+    {
+        "id": "LDVG",
+        "name": "Liste divers gauche"
+    },
+    {
+        "id": "LMDM",
+        "name": "Liste Modem"
+    },
+    {
+        "id": "LDVD",
+        "name": "Liste divers droite"
+    },
+    {
+        "id": "LRDG",
+        "name": "Liste Corse : La Garantie Républicaine"
+    },
+    {
+        "id": "LUG",
+        "name": "Liste d'Union de la gauche"
+    },
+    {
+        "id": "LFN",
+        "name": "Liste Front National"
+    },
+    {
+        "id": "LDLF",
+        "name": "Liste Debout La France"
+    },
+    {
+        "id": "LREG",
+        "name": "Liste régionaliste"
+    },
+    {
+        "id": "LECO",
+        "name": "Liste Ecologistes Indépendantes"
+    },
+    {
+        "id": "LUD",
+        "name": "Liste Union de la Droite"
+    },
+    {
+        "id": "LEXD",
+        "name": "Liste d'extrême droite"
+    },
+    {
+        "id": "LCOM",
+        "name": "Liste présentée par le PCF hors de l'alliance du Front de gauche"
+    },
+    {
+        "id": "LVEC",
+        "name": "Liste présentée par Europe Écologie Les Verts"
+    },
+    {
+        "id": "LSOC",
+        "name": "Liste du parti socialiste"
+    },
+    {
+        "id": "LFG",
+        "name": "Liste Front de Gauche"
+    },
+    {
+        "id": "LVEG",
+        "name": " liste d'un rassemblement citoyen comprenant Europe Écologie Les Verts, le Parti de gauche (PG) du Front de Gauche, la Nouvelle gauche socialiste (parti composé de dissidents venant du Parti socialiste) et de Nouvelle Donne
+"
+    },
+    {
+        "id": "LDIV",
+        "name": "Liste DiversE"
+    }
+]
