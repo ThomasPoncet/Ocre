@@ -1,5 +1,5 @@
 var app = angular.module('ProjectOpenData')
-.factory('map', ['$compile', 'dataProvider', function($compile, dataProvider) {
+.factory('map', ['$compile', 'dataProvider', 'state', function($compile, dataProvider, state) {
   // factory function body that constructs shinyNewServiceInstance
   var map = {};
 
@@ -50,23 +50,33 @@ var app = angular.module('ProjectOpenData')
         .data(geojson.features);
 
       /*
-      * On cr"éé un ColorScale, qui va nous
+      * On cr"éé un ColorScale, qui va nous-
       * permettre d'assigner plus tard une
       * couleur de fond à chacun de nos
       * départements
       */
-      var colorScale = d3.scale.category20c();
+      var colorScale = d3.scale.category10();
 
+      var color = function(value) {
+        var val = Math.floor(value * (16*16)/100).toString(16);
+        // console.log("color " + value + " tp " + val);
+        return "#1111" + val
+      }
+      //
+    //   var echelle = svg.append("g").append("path")
+    //   .attr("fill", )
       /*
       * Pour chaque entrée du tableau feature, on
       * créait un élément SVG path, avec les
       * propriétés suivantes
       */
+
+
       features.enter()
         .append("path")
         .attr('class', 'departement')
-        .attr('fill', function(d) {
-          return colorScale(+d.properties.CODE_DEPT);
+        .attr('fill', function(d, i) {
+          return color(dataProvider.getValueInDataSet(state.data_set, d.properties.CODE_DEPT))
         })
         .attr("d", path)
         .attr("ng-click", function(d) {

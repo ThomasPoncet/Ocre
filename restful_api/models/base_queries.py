@@ -33,11 +33,12 @@ class ListesQueries(DBConnector):
 
 class VotesQueries(DBConnector):
 
-    def retrieve_total_votes_for_liste(self, round_number, liste_id):
+    def retrieve_total_votes_for_liste(self, round_number, liste_ids):
         pipeline = [
             {"$project" : {"_id" : 1, "poll_outcome" : 1}},
             {"$unwind" : "$poll_outcome"},
-            {"$match" : { "poll_outcome.liste_id" : liste_id}},
+            {"$match" : { "poll_outcome.liste_id" : { "$in" : liste_ids}}},
+            {"$group" : { "_id" : "$_id", "vote_percentage" : {"$sum" : "$poll_outcome.liste_percentage"}}}
         ]
 
         return list(self.dept_col(round_number).aggregate(pipeline))
