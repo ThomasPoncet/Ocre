@@ -7,6 +7,16 @@ angular.module('ProjectOpenData', ['nvd3'])
 	});
 
 	// Only for test !
+	// dataProvider.getAllCorrelations("1", ["LFN", "LUD"], "2", function(listes){
+ // 		console.log(listes);
+	// 	setTimeout(function(){
+	// 		dataProvider.getAllCorrelations("1", ["LFN", "LUD"], "2", function(listes){
+	// 	 		console.log(listes);
+	// 		});
+	// 	}, 3000);
+ // 	});
+
+	// Only for test !
 	// dataProvider.getRegion(84, function(regionGeog){
 	// 	map.create("#region", "onMapClick", $scope, regionGeog);
 	// });

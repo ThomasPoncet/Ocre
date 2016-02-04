@@ -66,6 +66,35 @@ angular.module('ProjectOpenData')
     //          });
     //      }
     //  };
+    dataProvider.allCorrelations = {};
+    dataProvider.getAllCorrelations = function(tour, codesPartiListe, datasetId, callback){
+        if (typeof(dataProvider.allCorrelations[tour]) != "undefined"){
+            if (typeof(dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)]) != "undefined") {
+                if (typeof(dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)][datasetId]) != "undefined") {
+                    callback(dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)][datasetId]);
+                } else {
+                    $http.get(apiAddress+"/correlation?tour="+tour+"&dataset_id="+datasetId+"&liste_ids="+JSON.stringify(codesPartiListe)).success(function(data){
+                        dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)][datasetId] = data;
+                        callback(dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)][datasetId]);
+                    });
+                }
+            } else {
+                $http.get(apiAddress+"/correlation?tour="+tour+"&dataset_id="+datasetId+"&liste_ids="+JSON.stringify(codesPartiListe)).success(function(data){
+                    dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)] = {};
+                    dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)][datasetId] = data;
+                    callback(dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)][datasetId]);
+                });
+            }
+        } else {
+            $http.get(apiAddress+"/correlation?tour="+tour+"&dataset_id="+datasetId+"&liste_ids="+JSON.stringify(codesPartiListe)).success(function(data){
+                dataProvider.allCorrelations[tour] = {};
+                dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)] = {};
+                dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)] = {};
+                dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)][datasetId] = data;
+                callback(dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)][datasetId]);
+            });
+        }
+    };
 
      // Les listes presentes pour le premier ou second tour. (tour 1 ou 2)
      dataProvider.listes = {};
