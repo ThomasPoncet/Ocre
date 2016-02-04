@@ -1,24 +1,24 @@
 [
     {
         "id": "LEXG",
-        "name": "Liste d'extrême gauche"
+        "name": "Extrême gauche"
         ]
     },
     {
         "id": "LLR",
-        "name": " Liste Les Républicains"
+        "name": "Les Républicains"
     },
     {
         "id": "LDVG",
-        "name": "Liste divers gauche"
+        "name": "Divers gauche"
     },
     {
         "id": "LMDM",
-        "name": "Liste Modem"
+        "name": "Modem"
     },
     {
         "id": "LDVD",
-        "name": "Liste divers droite"
+        "name": "Divers droite"
     },
     {
         "id": "LRDG",
@@ -26,15 +26,15 @@
     },
     {
         "id": "LUG",
-        "name": "Liste d'Union de la gauche"
+        "name": "Union de la gauche"
     },
     {
         "id": "LFN",
-        "name": "Liste Front National"
+        "name": "Front National"
     },
     {
         "id": "LDLF",
-        "name": "Liste Debout La France"
+        "name": "Debout La France"
     },
     {
         "id": "LREG",
@@ -42,15 +42,15 @@
     },
     {
         "id": "LECO",
-        "name": "Liste Ecologistes Indépendantes"
+        "name": "Ecologistes Indépendants"
     },
     {
         "id": "LUD",
-        "name": "Liste Union de la Droite"
+        "name": "Union de la Droite"
     },
     {
         "id": "LEXD",
-        "name": "Liste d'extrême droite"
+        "name": "Extrême Droite"
     },
     {
         "id": "LCOM",
@@ -58,23 +58,22 @@
     },
     {
         "id": "LVEC",
-        "name": "Liste présentée par Europe Écologie Les Verts"
+        "name": "Europe Écologie Les Verts"
     },
     {
         "id": "LSOC",
-        "name": "Liste du parti socialiste"
+        "name": "Parti Socialiste"
     },
     {
         "id": "LFG",
-        "name": "Liste Front de Gauche"
+        "name": "Front de Gauche"
     },
     {
         "id": "LVEG",
-        "name": " liste d'un rassemblement citoyen comprenant Europe Écologie Les Verts, le Parti de gauche (PG) du Front de Gauche, la Nouvelle gauche socialiste (parti composé de dissidents venant du Parti socialiste) et de Nouvelle Donne
-"
+        "name": "Rass. EELV, PG, Nvelle gauche socialiste, Nvelle Donne"
     },
     {
         "id": "LDIV",
-        "name": "Liste DiversE"
+        "name": "Liste Diverse"
     }
 ]
