@@ -125,6 +125,59 @@ angular.module('ProjectOpenData', ['nvd3'])
 		genData();
 	});
 }])
+    .controller('PieChart', ['$scope', 'state', 'dataProvider', function($scope, state, dataProvider) {
+        $scope.state = state;
+
+
+        var genData = function() {
+            if (state.available_parties.length == 0) {
+                return;
+            }
+
+            $scope.data = [];
+            dataProvider.getVotesForPieChart(state.selected_tour, state.selected_region, function($scope) {
+                return function (data) {
+                    $scope.data = data;
+                   /* for(elem of data) {
+                        console.log(elem.liste_id);
+                        $scope.data.push({
+                            "key": elem.liste_id,
+                            "y": elem.liste_percentage
+                        });
+                    }*/
+                }
+            }($scope));
+
+
+            $scope.options = {
+                chart: {
+                    type: 'pieChart',
+                    height: 500,
+                    x: function(d){return d.liste_id;},
+                    y: function(d){return d.liste_percentage;},
+                    showLabels: true,
+                    duration: 500,
+                    labelThreshold: 0.01,
+                    labelSunbeamLayout: true,
+                    legend: {
+                        margin: {
+                            top: 5,
+                            right: 35,
+                            bottom: 5,
+                            left: 0
+                        }
+                    }
+                }
+            };
+            //   });
+            //   });
+        };
+
+        //listener
+        $scope.$watchGroup(['state.selected_region', 'state.selected_tour'], function(newV, oldV) {
+            genData();
+        });
+    }])
 .controller('CorelationCadran', ['$scope', 'state', 'dataProvider', 'cadran', function($scope, state, dataProvider, cadran) {
     $scope.state = state;
 

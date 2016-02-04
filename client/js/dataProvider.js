@@ -266,9 +266,9 @@ angular.module('ProjectOpenData')
             for (var i = 0; i < votes.poll_outcome.length; i++) {
                 dataProvider.getColor(votes.poll_outcome[i].liste_id, function(colorList){
                     votes.poll_outcome[i].color = colorList;
-                    console.log(colorList);
                 });
             }
+            console.log(votes.poll_outcome);
             callback(votes.poll_outcome);
         });
     };
