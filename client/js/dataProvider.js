@@ -247,6 +247,9 @@ angular.module('ProjectOpenData')
             }
         }
     };
+    dataProvider.getDataSetMetaData = function(datasetId) {
+        return dataProvider.allResVotes[tour][parti].graph_metadata;
+    };
 
 
     return dataProvider;
