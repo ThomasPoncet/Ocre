@@ -6,7 +6,15 @@ ____
 
 
 ## Démarche pour le projet
-Nous avons d'abord souhaité répondre à la demande de l'école de journalisme de Grenoble, pour visualiser et interpréter les résultats des dernières élections. N'ayant plus eu de contact avec l'école de journalisme nous avons décidé de proposer un outil permettant de comparer les résultats de ces élections, avec un autre jeu de donnée OpenData. Le but étant de proposer un outil qui, dans sa version finale, accepte n'importe quel jeu de donnée géolocalisé (suivant une norme) en entrée. Pour comparer ces jeux de donnée, nous proposons de les visualiser en même temps sur une carte de France, avec un zoom par pas (les pas suivant le découpage administratif français).
+Nous avons d'abord souhaité répondre à la demande de l'école de journalisme de Grenoble, pour visualiser et interpréter les résultats des dernières élections. N'ayant plus eu de contact avec l'école de journalisme nous avons décidé de proposer un outil permettant de comparer les résultats de ces élections, avec un autre jeu de donnée OpenData. Le but étant de proposer un outil qui, dans sa version finale, accepte n'importe quel jeu de donnée géolocalisé (suivant une norme) en entrée. Pour comparer ces jeux de donnée, nous proposons de les visualiser en même temps sur une carte de France.
+Le rendu final sera la dernière itération éffectuée et ne sera peut être pas identique au projet initial.
+
+Le projet s'est déroulé sur plusieurs phases :
+  1. récupérer les données et générer notre propre base de données
+  2. Créer un template et un premier visuel de l'application
+  3. Relier la base de données (serveur - back-end) avec l'application (client - front-end)
+  4. Afficher plusieurs outils de visualisation
+  5. Permettre l'ajout de nouvelles données par le client
 
 ## Récupération des différents jeux de données
 ### Résultat des élections

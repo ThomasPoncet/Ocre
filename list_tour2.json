@@ -1,0 +1,22 @@
+[
+    {
+        "id": "LDVG",
+        "name": "Liste divers gauche"
+    },
+    {
+        "id": "LUG",
+        "name": "Liste d'Union de la gauche"
+    },
+    {
+        "id": "LFN",
+        "name": "Liste Front National"
+    },
+    {
+        "id": "LREG",
+        "name": "Liste régionaliste"
+    },
+    {
+        "id": "LUD",
+        "name": "Liste Union de la Droite"
+    }
+]
