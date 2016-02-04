@@ -19,19 +19,11 @@ angular.module('ProjectOpenData', ['nvd3'])
 		state.setSelectedRegion(code_dep);
 	};
 
-    //draw_map();
-
-    var timeoutFunc =  function(scope) {
-      return function () {
-          scope.$watchGroup(["state.selected_tour", "state.selected_partie", "state.data_set"], function (newV, oldV) {
-              if (newV[0] && newV[1] && newV[2]) {
-                  //draw_map();
-              }
-          });
-      }
-    };
-
-    setTimeout(timeoutFunc($scope), 2000); // Pourquoi tu as besoin d'attendre 2 secondes ? C'est pas normal...
+    $scope.$watchGroup(["state.selected_tour", "state.selected_partie.length", "state.data_set"], function (newV, oldV) {
+        if (newV[0] && newV[1] && newV[2]) {
+            draw_map();
+        }
+    });
 
 }])
 
@@ -49,8 +41,10 @@ angular.module('ProjectOpenData', ['nvd3'])
 	$scope.selectDataSet = function(dataset) {
 		state.setDataSet(dataset);
 	};
+
 	$scope.selectPartie = function(partie) {
         var index = state.selected_partie.indexOf(partie);
+
         if(index == -1) {
             state.selected_partie.push(partie);
         } else {
@@ -120,13 +114,9 @@ angular.module('ProjectOpenData', ['nvd3'])
 	};
 
     //listener
-	$scope.$watchGroup(['state.data_set', 'state.selected_partie', 'state.selected_tour'], function(newV, oldV) {
+	$scope.$watchGroup(['state.data_set', 'state.selected_partie.length', 'state.selected_tour'], function(newV, oldV) {
 		genData();
 	});
-
-	genData();
-
-
 }])
 .controller('CorelationCadran', ['$scope', 'state', 'dataProvider', 'cadran', function($scope, state, dataProvider, cadran) {
     $scope.state = state;
@@ -137,20 +127,9 @@ angular.module('ProjectOpenData', ['nvd3'])
         });
     };
 
-    $scope.$watch('state.selected_tour', function(newV, oldV) {
+    $scope.$watchGroup(["state.selected_tour", "state.selected_partie.length", "state.data_set"], function(newV, oldV) {
         if(newV) {
             redraw();
         }
     });
-    $scope.$watch('state.selected_partie', function(newV, oldV) {
-        if(newV) {
-            redraw();
-        }
-    });
-    $scope.$watch('state.data_set', function(newV, oldV) {
-        if(newV) {
-            redraw();
-        }
-    });
-    redraw();
 }]);

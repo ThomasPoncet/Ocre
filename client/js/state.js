@@ -12,6 +12,8 @@ angular.module('ProjectOpenData')
 
 	this.available_dataSet = [];
 
+	this.selected_partie = [];
+
 	this.update_listes = function() {
 		var f = function(state) {
 			return function (data) {
@@ -38,7 +40,6 @@ angular.module('ProjectOpenData')
 		this.selected_region = region;
 	};
 
-	this.selected_partie = [];
 
 	this.setSelectedPartie = function(partie) {
 		this.selected_partie = partie;
