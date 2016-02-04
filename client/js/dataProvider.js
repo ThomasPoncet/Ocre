@@ -74,7 +74,7 @@ angular.module('ProjectOpenData')
     dataProvider.getAllCorrelations = function(tour, codesPartiListe, datasetId, callback){
         if (codesPartiListe.length == 0 || typeof(datasetId) == "undefined") {
             callback(null);
-        }
+        } else {
         if (typeof(dataProvider.allCorrelations[tour]) != "undefined"){
             if (typeof(dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)]) != "undefined") {
                 if (typeof(dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)][datasetId]) != "undefined") {
@@ -100,7 +100,7 @@ angular.module('ProjectOpenData')
                 dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)][datasetId] = data;
                 callback(dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)][datasetId]);
             });
-        }
+        }}
     };
 
     /**
