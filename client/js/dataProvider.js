@@ -66,6 +66,10 @@ angular.module('ProjectOpenData')
     //          });
     //      }
     //  };
+
+    /**
+     * Informations pour la carte et le graphe (tout y est précalculé)
+     **/
     dataProvider.allCorrelations = {};
     dataProvider.getAllCorrelations = function(tour, codesPartiListe, datasetId, callback){
         if (typeof(dataProvider.allCorrelations[tour]) != "undefined"){
@@ -94,6 +98,30 @@ angular.module('ProjectOpenData')
                 callback(dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)][datasetId]);
             });
         }
+    };
+
+    /**
+     * Pour avoir toutes les informations sur le scrutin (abstention, votant, résultats, ...)
+     **/
+    dataProvider.allVoteInfos = {};
+    dataProvider.getAllVoteInfos = function(tour, callback){
+        if (typeof(dataProvider.allVoteInfos[tour]) !== "undefined"){
+            callback(dataProvider.allVoteInfos[tour]);
+        } else {
+            $http.get(apiAddress+"/basic_data?tour="+tour).success(function(data){
+                dataProvider.allVoteInfos[tour] = data;
+                callback(dataProvider.allVoteInfos[tour]);
+            });
+        }
+    };
+    dataProvider.getDeptVoteInfos = function(tour, dept, callback){
+        dataProvider.getAllVoteInfos(tour, function(data){
+            for (deptVoteInfos of data) {
+                if (''+deptVoteInfos.dept_code == dept){
+                    callback(deptVoteInfos);
+                }
+            }
+        });
     };
 
      // Les listes presentes pour le premier ou second tour. (tour 1 ou 2)
