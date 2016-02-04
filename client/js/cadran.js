@@ -1,5 +1,5 @@
 angular.module('ProjectOpenData')
-.factory("cadran", [function() {
+.factory("cadran", ["state", function(state) {
     var cadran = {};
 
     cadran.create = function(domId, $scope, geojson) {
@@ -11,14 +11,14 @@ angular.module('ProjectOpenData')
 
         var xValue = function(d) { return +d.votes_normalized;}, // data -> value
             xScale = d3.scale.linear().domain([-max_min, +max_min]).range([-width/2, width/2]), // value -> display
-            xMap = function(d) { return xScale(xValue(d));}, // data -> display
-            xAxis = d3.svg.axis().scale(xScale).orient("up");
+            xMap = function(d) { return xScale(-xValue(d));}, // data -> display
+            xAxis = d3.svg.axis().scale(xScale).orient("up").ticks(0);
 
 // setup y
         var yValue = function(d) { return +d.other_normalized;}, // data -> value
             yScale = d3.scale.linear().domain([-max_min, +max_min]).range([-height/2, height/2]), // value -> display
             yMap = function(d) { return yScale(yValue(d));}, // data -> display
-            yAxis = d3.svg.axis().scale(yScale).orient("left");
+            yAxis = d3.svg.axis().scale(yScale).orient("left").ticks(0);
 
 // setup fill color
         var cValue = function(d) { return d.color;};
@@ -50,6 +50,13 @@ angular.module('ProjectOpenData')
                 .attr("class", "x axis")
                 .attr("transform", "translate(" + width/2 +", " + height/2 + ")")
                 .call(xAxis);
+
+            // Add the text label for the x axis
+            svg.append("text")
+                .attr("transform", "translate(" + (width * 0.75) + " ," + (height * .55) + ")")
+                .attr("id", "labelx_candran")
+                .style("text-anchor", "middle")
+                .text("% Vote Normalisé");
 
             // y-axis
             svg.append("g")
