@@ -216,11 +216,18 @@ angular.module('ProjectOpenData')
             });
         }
     };
-    
+
     dataProvider.laodAllDataSet = function(datasetId, callback){
 
     };
-    dataProvider.getResVote = function(tour, dept, parti){};
+
+    dataProvider.getResVote = function(tour, dept, parti){
+        for (resParti of dataProvider.allResVotes[''+tour][''+parti]) {
+            if (''+resParti._id == ''+dept) {
+                return resParti.vote_percentage;
+            }
+        }
+    };
     dataProvider.getValueInDataSet = function(datasetId, dept){};
 
 
