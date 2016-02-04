@@ -1,6 +1,6 @@
 angular.module('ProjectOpenData')
 .factory('dataProvider', ['$http', function($http) {
-    var apiAddress = "http://ocre.fr:4000/api";
+    var apiAddress = "http://localhost:4000/api";
     var dataProvider = {};
 
 
@@ -176,29 +176,55 @@ angular.module('ProjectOpenData')
         }
     };
 
-    // Datasets
-    dataProvider.datasets = {};
-    dataProvider.getDataset = function(datasetName, callback){
-        if (typeof(dataProvider.datasets[datasetName]) == undefined){
-            $http.get("????").success(function(data){
-                dataProvider.datasets[datasetName] == data;
-                callback(dataProvider.datasets[datasetName]);
-            });
+    dataProvider.allResVotes = {};
+    /**
+     * Problem : the API gives the sum of the votes for the selectedPartisList, so we've got to retrieve
+     * the partis one by one.
+     **/
+    dataProvider.loadAllResVotes = function(tour, selectedPartisList, callback){
+        var parti = selectedPartisList.pop();
+        var onePartiArray = [];
+        onePartiArray.push(parti);
+        if (typeof(dataProvider.allResVotes[tour]) != "undefined"){
+            if (typeof(dataProvider.allResVotes[tour][parti]) != "undefined") {
+                // If there is no more parti in the list, we execute callback
+                if (selectedPartisList.length == 0) {
+                    callback();
+                // Else we rexecute the method with the new selectedPartisList (one element has been taken)
+                } else {
+                    dataProvider.loadAllResVotes(tour, selectedPartisList, callback);
+                }
+            } else {
+                $http.get(apiAddress+"/total_votes?tour="+tour+"&liste_ids="+JSON.stringify(onePartiArray)).success(function(data){
+                    dataProvider.allResVotes[tour][parti] = data;
+                    if (selectedPartisList.length == 0) {
+                        callback();
+                    } else {
+                        dataProvider.loadAllResVotes(tour, selectedPartisList, callback);
+                    }
+                });
+            }
         } else {
-            callback(dataProvider.datasets[datasetName]);
+            $http.get(apiAddress+"/total_votes?tour="+tour+"&liste_ids="+JSON.stringify(onePartiArray)).success(function(data){
+                dataProvider.allResVotes[tour] = {};
+                dataProvider.allResVotes[tour][parti] = data;
+                if (selectedPartisList.length == 0) {
+                    callback();
+                } else {
+                    dataProvider.loadAllResVotes(tour, selectedPartisList, callback);
+                }
+            });
         }
     };
-    dataProvider.loadAllResVotes = function(tour, partisSelectedList, callback){
+    
+    dataProvider.laodAllDataSet = function(datasetId, callback){
 
     };
-      dataProvider.laodAllDataSet = function(datasetId, callback){
-
-    };
-    dataProvider.getResVote = function(selected_tour, dept, selected_partie){};
+    dataProvider.getResVote = function(tour, dept, parti){};
     dataProvider.getValueInDataSet = function(datasetId, dept){};
 
 
-return dataProvider;
+    return dataProvider;
 
 
 }]);
