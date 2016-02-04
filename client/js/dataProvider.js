@@ -72,6 +72,9 @@ angular.module('ProjectOpenData')
      **/
     dataProvider.allCorrelations = {};
     dataProvider.getAllCorrelations = function(tour, codesPartiListe, datasetId, callback){
+        if(codesPartiListe.length == 0 || typeof(datasetId)=="undefined"){
+            callback([]);
+        }
         if (typeof(dataProvider.allCorrelations[tour]) != "undefined"){
             if (typeof(dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)]) != "undefined") {
                 if (typeof(dataProvider.allCorrelations[tour][JSON.stringify(codesPartiListe)][datasetId]) != "undefined") {
@@ -217,17 +220,8 @@ angular.module('ProjectOpenData')
         }
     };
 
-    //Load on the client the dataset with datasetId
-    dataProvider.allDataSets = {};
-    dataProvider.loadDataset = function(datasetId, callback){
-        if (typeof(dataProvider.allDataSets[''+datasetId]) != "undefined"){
-            callback();
-        } else {
-            $http.get(apiAddress+"/dataset_raw?dataset_id="+datasetId).success(function(data){
-                dataProvider.allDataSets[''+datasetId] = data;
-                callback();
-            });
-        }
+    dataProvider.laodAllDataSet = function(datasetId, callback){
+
     };
 
     dataProvider.getResVote = function(tour, dept, parti){
@@ -237,13 +231,7 @@ angular.module('ProjectOpenData')
             }
         }
     };
-    dataProvider.getValueInDataSet = function(datasetId, dept){
-        for (dataDept of dataProvider.allDataSets[''+datasetId]) {
-            if (''+dataDept.id == ''+dept) {
-                return dataDept.percentage;
-            }
-        }
-    };
+    dataProvider.getValueInDataSet = function(datasetId, dept){};
 
 
     return dataProvider;
