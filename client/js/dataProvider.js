@@ -100,6 +100,9 @@ angular.module('ProjectOpenData')
         }
     };
 
+    /**
+     * Pour avoir toutes les informations sur le scrutin (abstention, votant, résultats, ...)
+     **/
     dataProvider.allVoteInfos = {};
     dataProvider.getAllVoteInfos = function(tour, callback){
         if (typeof(dataProvider.allVoteInfos[tour]) !== "undefined"){
@@ -110,6 +113,15 @@ angular.module('ProjectOpenData')
                 callback(dataProvider.allVoteInfos[tour]);
             });
         }
+    };
+    dataProvider.getDeptVoteInfos = function(tour, dept, callback){
+        dataProvider.getAllVoteInfos(tour, function(data){
+            for (deptVoteInfos of data) {
+                if (''+deptVoteInfos.dept_code == dept){
+                    callback(deptVoteInfos);
+                }
+            }
+        });
     };
 
      // Les listes presentes pour le premier ou second tour. (tour 1 ou 2)
