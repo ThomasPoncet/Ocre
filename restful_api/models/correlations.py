@@ -5,6 +5,7 @@ import matplotlib.cm as cm
 from matplotlib.colors import rgb2hex, colorConverter
 from sklearn import preprocessing, linear_model
 
+from models.colormap import redtoblue
 from .base_queries import DBConnector, VotesQueries
 from .constants import DatasetType
 from .datasets import POURCENTAGE_CHOMAGE_PAR_DEPTS, \
@@ -40,10 +41,11 @@ class DataCorellator(VotesQueries):
         abs_maximum = max([max(map(abs,array_x)), max(map(abs,array_y))])
         diagonal_length = norm(array([abs_maximum, abs_maximum])) # longueur de la projection
         diag = array([diagonal_length, diagonal_length])
+        anti_diag = array([-diagonal_length, diagonal_length])
 
-        # on instancie le gradient de couleur sur le modèle "seismic_r"
+        # on instancie le gradient de couleur sur le modèle de couleur du centre
         normalized = mpl.colors.Normalize(vmin=-abs_maximum, vmax=abs_maximum)
-        color_map = cm.seismic_r
+        color_map = redtoblue
 
         color_gradient = cm.ScalarMappable(norm=normalized, cmap=color_map)
 
