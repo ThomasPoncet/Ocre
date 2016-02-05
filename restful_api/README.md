@@ -2,7 +2,7 @@
 
 Voici les instructions pour faire fonctionner l'API nécessaire au bon fonctionnement du frontend web d'Ocre.
 
-## Les dépendances logicielles
+## Dépendances logicielles
 
 Il faut installer mongodb en version 3.0. Donc, pour Ubuntu et le reste, c'est en général pas encore dans les dépôts!
 Cliquer sur le lien suivant pour apprendre à faire l'installation :  https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-14-04
@@ -22,7 +22,7 @@ sudo pip3 install pymongo sklearn flask-restful
 
 Si des erreurs sortent à l'installation  du module sklearn et vérifiez que vous avez les bons paquets nécessaires à la compilation des éventuels binaires C.
 
-## Le peuplement de la base
+## Peuplement de la base
 
 D'abord, téléchargez les fichiers CSV des données
 
@@ -55,7 +55,7 @@ cd restful_api/
 ```
 
 
-## Lancer le serveur de l'API
+## Lancement du serveur de l'API
 
 Il n'y a qu'à lancer le script suivant :
 ```bash
@@ -101,4 +101,4 @@ sudo service nginx restart
 
 ## Recharger les bases
 
-Si les données ont pu changer, ou la base de donnée a craché pour une raison ou une autre, il est toujours possible de recharger la base. Il suffit de lancer le script `reload_db.sh`.
+Si les données ont changé, ou la base de donnée a planté pour une raison ou une autre, il est toujours possible de recharger la base. Il suffit de lancer le script `reload_db.sh`.
