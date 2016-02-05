@@ -4,8 +4,8 @@ Voici les instructions pour faire fonctionner l'API nécessaire au bon fonctionn
 ___
 
 **Table des matières**
-- [Dépendances logicielles](#)
-- [Peuplement de la base](#)
+- [Dépendances logicielles](#dépendances-logicelles)
+- [Peuplement de la base](#peuplement-de-la-base)
     - [Première méthode : à la main](#)
 	- [Deuxième méthode : en automatique](#)
 - [Lancement du serveur de l'API](#)
