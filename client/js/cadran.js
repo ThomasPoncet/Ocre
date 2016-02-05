@@ -66,8 +66,9 @@ angular.module('ProjectOpenData')
 
             // Add the text label for the Y axis
             svg.append("text")
-                .attr("y", width / 5)
-                .attr("x", (height * 0.45))
+                .attr("transform", "rotate(-90)")
+                .attr("y", width / 2)
+                .attr("x", 0 - height / 3)
                 .attr("dy", "1em")
                 .style("text-anchor", "middle")
                 .text(state.data_set.name);
@@ -81,6 +82,7 @@ angular.module('ProjectOpenData')
                 .attr("r", 3.5)
                 .attr("cx", xMap)
                 .attr("cy", yMap)
+                .attr("stroke", "black")
                 .style("fill", function(d) { return cValue(d);});
                /* .on("mouseover", function(d) {
                     tooltip.transition()

@@ -78,7 +78,6 @@ Puis coller le code suivant, en veillant à ce que le contenu de "ROOT DIRECTORY
 ```nginx
 server {
     listen      4000;
-    server_name ocre.fr;
 
     root "ROOT_DIRECTORY";
 
