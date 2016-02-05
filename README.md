@@ -11,8 +11,8 @@ ____
 - [Traitements opérés](#traitements-opérés)
 - [Architecture](#architecture)
 - [Technologies utilisées](#technologies-utilisées)
-	- [Client (Front-end)](#client-(front-end))
-	- [Serveur (Back-end)](#serveur-(back-end))
+	- [Client (Front-end)](#client-front-end)
+	- [Serveur (Back-end)](#serveur-back-end)
 
 
 ## Démarche pour le projet
