@@ -3,17 +3,17 @@ Observation et comparaison des résultats des élections
 ____
 
 **Table des matières**
-- [Démarche pour le projet](#)
-- [Récupération des différents jeux de données](#)
-	- [Résultat des élections](#)
-	- [Base de données gouvernementales](#)
-	- [Fonds de carte](#)
-- [Traitements opérés](#)
-- [Architecture](#)
-- [Technologies utilisées](#)
-	- [Client (Front-end)](#)
-	- [Serveur (Back-end)](#)
-___
+- [Démarche pour le projet](#démarche-pour-le-projet)
+- [Récupération des différents jeux de données](#récupération-des-différents-jeux-de-données)
+	- [Résultats des élections](#résultats-des-élections)
+	- [Bases de données gouvernementales](#bases-de-données-gouvernementales)
+	- [Fonds de carte](#fonds-de-carte)
+- [Traitements opérés](#traitements-opérés)
+- [Architecture](#architecture)
+- [Technologies utilisées](#technologies-utilisées)
+	- [Client (Front-end)](#client-(front-end))
+	- [Serveur (Back-end)](#serveur-(back-end))
+
 
 ## Démarche pour le projet
 Nous avons d'abord souhaité répondre à la demande de l'école de journalisme de Grenoble, pour visualiser et interpréter les résultats des dernières élections (régionales 2015). N'ayant plus eu de contact avec l'école de journalisme nous avons décidé de proposer un outil permettant de comparer les résultats de ces élections, avec un autre jeu de donnée OpenData. Le but étant de proposer un outil qui, dans sa version finale, accèpterait n'importe quel jeu de donnée géolocalisé (suivant une norme) en entrée. Pour comparer ces jeux de donnée, nous proposons de les visualiser en même temps sur une carte de France.
@@ -27,7 +27,7 @@ Le projet s'est déroulé sur plusieurs phases :
   5. Permettre l'ajout de nouvelles données par le client (extension)
 
 ## Récupération des différents jeux de données
-### Résultat des élections
+### Résultats des élections
 Nous avons récupéré les données des élections régionales (premier et second tour) de 2015 en France via un contact de l'école de journalisme de Grenoble. Pour plus de compréhension, il est important de savoir que les différents parties et rassemblements politiques sont définis par un libéllé bien précis :
   - LDIV : Liste Divers
   - LECO : Liste Ecologistes Indépendantes
@@ -61,7 +61,7 @@ Plusieurs opérations de préparation ont été faites sur ces données car la s
 - supprimer les entrées inutiles,
 - aggréger les données au niveau du département (alors qu'elles étaient au niveau de la commune avant).
 
-### Base de données gouvernementales
+### Bases de données gouvernementales
 Nous avons utilisé les données de l'INSEE pour pouvoir les confronter aux résultats des élections. Nous avons fait le choix de prendre le taux de nuptialité, de chomage, de natalité et l'évolution des l'emploi en France. Ce sont des données départemantales.
 
 ### Fonds de carte
