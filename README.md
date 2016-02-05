@@ -85,3 +85,6 @@ Au niveau du client, nous avons utilisé les technologies suivantes :
 Pour le serveur, nous avons utilisé les technologies suivantes :
 - [MongoDB](https://www.mongodb.org/) : Base de donnée NoSQL facile à mettre en place.
 - [Python](https://www.python.org/) : Pour réaliser un serveur API REST avec le framework [FLask-RESTful](http://flask-restful-cn.readthedocs.org/en/0.3.4/) et des libraries pour le traitement des données ([sklearn](http://scikit-learn.org/stable/), [numpy](http://www.numpy.org/) et [matplotlib](http://matplotlib.org/)).
+
+# Installer l'API REST d'Ocre
+Pour installer l'API REST d'Ocre, suivre les instruction dans le [README de l'API](restful_api/).
