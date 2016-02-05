@@ -9,8 +9,8 @@ ___
 - [Peuplement de la base](#peuplement-de-la-base)
     - [Première méthode : à la main](#première-méthode--à-la-main)
 	- [Deuxième méthode : en automatique](#deuxième-méthode--en-automatique)
-- [Lancement du serveur de l'API](#lancement-du-serveur-de-l'API)
-- [Configuration nécessaire pour avoir l'API et le client sur la même machine](#configuration-nécessaire-pour-avoir-lAPI-et-le-client-sur-la-même-machine)
+- [Lancement du serveur de l'API](#lancement-du-serveur-de-lapi)
+- [Configuration nécessaire pour avoir l'API et le client sur la même machine](#configuration-nécessaire-pour-avoir-lapi-et-le-client-sur-la-même-machine)
 - [Recharger les bases](#recharger-les-bases)
 
 ___
@@ -37,7 +37,7 @@ Si des erreurs sortent à l'installation  du module sklearn et vérifiez que vou
 
 ## Peuplement de la base
 
-D'abord, téléchargez les fichiers CSV des données
+D'abord, téléchargez les fichiers CSV des données des élections à [cette adresse](https://drive.google.com/folderview?id=0B9zwNqdsrLx2cTlMOFpxSDI4cHM&usp=sharing).
 
 ### Première méthode : à la main
 Pour insérer les données brutes dans la base (à partir des deux CSV), il faut faire
