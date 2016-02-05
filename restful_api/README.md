@@ -1,16 +1,18 @@
 # L'API REST d'Ocre
 
 Voici les instructions pour faire fonctionner l'API nécessaire au bon fonctionnement du front-end web d'Ocre.
+
 ___
 
 **Table des matières**
-- [Dépendances logicielles](#dépendances-logicelles)
+- [Dépendances logicielles](#dépendances-logicielles)
 - [Peuplement de la base](#peuplement-de-la-base)
-    - [Première méthode : à la main](#)
-	- [Deuxième méthode : en automatique](#)
-- [Lancement du serveur de l'API](#)
-- [Configuraton nécessaire pour avoir l'API et le client sur la même machine](#)
-- [Recharger les bases](#)
+    - [Première méthode : à la main](#première-méthode--à-la-main)
+	- [Deuxième méthode : en automatique](#deuxième-méthode--en-automatique)
+- [Lancement du serveur de l'API](#lancement-du-serveur-de-l'API)
+- [Configuration nécessaire pour avoir l'API et le client sur la même machine](#configuration-nécessaire-pour-avoir-lAPI-et-le-client-sur-la-même-machine)
+- [Recharger les bases](#recharger-les-bases)
+
 ___
 
 ## Dépendances logicielles
@@ -73,7 +75,7 @@ Il n'y a qu'à lancer le script suivant :
 python3 app.py
 ```
 
-## Configuraton nécessaire pour avoir l'API et le client sur la même machine
+## Configuration nécessaire pour avoir l'API et le client sur la même machine
 
 En fait, il faut faire une configurations sur le serveur NGINX qui sert le front-end web d'Ocre pour éviter des problèmes avec le CORS.
 D'avance, arrêter Apache.
