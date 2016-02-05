@@ -1,5 +1,6 @@
 # Ocre
 Observation et comparaison des résultats des élections
+
 ____
 
 **Table des matières**
@@ -14,6 +15,8 @@ ____
 	- [Client (Front-end)](#client-front-end)
 	- [Serveur (Back-end)](#serveur-back-end)
 - [Installer l'API REST d'Ocre](#installer-lapi-rest-docre)
+
+____
 
 
 ## Démarche pour le projet
