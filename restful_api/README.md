@@ -1,6 +1,17 @@
 # L'API REST d'Ocre
 
-Voici les instructions pour faire fonctionner l'API nécessaire au bon fonctionnement du frontend web d'Ocre.
+Voici les instructions pour faire fonctionner l'API nécessaire au bon fonctionnement du front-end web d'Ocre.
+___
+
+**Table des matières**
+- [Dépendances logicielles](#)
+- [Peuplement de la base](#)
+    - [Première méthode : à la main](#)
+	- [Deuxième méthode : en automatique](#)
+- [Lancement du serveur de l'API](#)
+- [Configuraton nécessaire pour avoir l'API et le client sur la même machine](#)
+- [Recharger les bases](#)
+___
 
 ## Dépendances logicielles
 
