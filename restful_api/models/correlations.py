@@ -7,11 +7,13 @@ from sklearn import preprocessing, linear_model
 
 from models.colormap import redtoblue, make_white_gradient
 from .base_queries import VotesQueries
-from .datasets import DATASET_TYPE_TO_OBJECTS
 
 class DataCorellator(VotesQueries):
+    """Utilisé pour afficher des corrélations entre un dataset et un pourcentage de vote pour un groupe de listes donné.
+    Hérite de VoteQueries pour utiliser la requête de votes pour un groupe de listes"""
 
     def _compute_colors(self, array_x, array_y):
+
         # on calcule le maximum absolu de toutes valeurs pour former un carré
         abs_maximum = max([max(map(abs,array_x)), max(map(abs,array_y))])
         diagonal_length = norm(array([abs_maximum, abs_maximum])) # longueur de la projection
@@ -52,10 +54,10 @@ class DataCorellator(VotesQueries):
 
         return model.coef_[0], model.intercept_
 
-    def get_correlation_data(self,round_number, liste_id, dataset_type):
+    def get_correlation_data(self, round_number, liste_id, dataset):
         points = []
-        # on sélectionne le dataset en fonction de l'argument
-        dataset = DATASET_TYPE_TO_OBJECTS[dataset_type]
+
+        #On récupère d'abord les pourcentages de vote pour la liste donnée
         poll_data = self.retrieve_total_votes_for_liste(round_number, liste_id)
 
         # on range les des données dans un dico propre
@@ -68,8 +70,14 @@ class DataCorellator(VotesQueries):
                            "other_percentage" : dataset[dept_data["_id"]] / 100})
 
         array_x, array_y = array(data_x), array(data_y)
+
+        # on normalise les données de vote et du dataset
         rescaled_x, rescaled_y  = preprocessing.scale(array_x), preprocessing.scale(array_y)
+
+        #on calcule les couleurs pour chacun des départements
         colors, max_val = self._compute_colors(rescaled_x, rescaled_y)
+
+        #surles données non normalisées, on calcule les coefficients de la droite de régression
         reg_slope, reg_y_intercept = self._linear_regression(array_x, array_y)
 
         for i, x in enumerate(rescaled_x):

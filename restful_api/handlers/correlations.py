@@ -1,25 +1,14 @@
 from .base import BaseByListeHandler, BaseHandler
 from flask_restful import Resource
-from models.constants import DatasetType
-from models.correlations import DataCorellator, DATASET_TYPE_TO_OBJECTS
+from models.correlations import DataCorellator
+from models.datasets import DatasetManager
 
-DATASETS_NAMES = {DatasetType.UNEMPLOYMENT: "Chômage",
-                  DatasetType.WEDDINGS : "Taux de Nuptialité",
-                  DatasetType.EVOLUTION_JOB : "Taux d'Emploi",
-                  DatasetType.NATALITY : "Taux de Natalité",
-                  DatasetType.ABSTENTION: "Pourcentage moyen d'abstention",
-                  DatasetType.PACS: "Pourcentage de pacs en 2013",
-                  DatasetType.DIPLOME:"Nombre de diplomés de l'enseignement supérieur",
-                  DatasetType.NON_DIPLOME: "Nombre de non-diplomés",
-                  DatasetType.LOGEMENT_SECONDAIRE: "Nombre de logements secondaires",
-                  DatasetType.LOGEMENT_SOCIAUX: "Nombre de logements sociaux",
-                  DatasetType.MINIMA: "Part des minima sociaux sur la moyenne des revenus",
-                  DatasetType.NIVEAU_DE_VIE: "Niveau de vie"}
+
 
 class RetrieveDatasetsHandler(Resource):
     """Fournit la liste des datasets déjà disponibles"""
     def get(self):
-        return [{"id" : k.value, "name" : v } for k,v in DATASETS_NAMES.items()]
+        return DatasetManager.get_datasets_list()
 
 class BaseByDatasetIdHandler(BaseHandler):
     """Pour toutes les requêtes qui sont paramétrées par un tour"""
@@ -38,7 +27,7 @@ class RetrieveDatasetDataHandler(BaseByDatasetIdHandler):
     def get(self):
         self.do_request_parsing()
         return [ {"id": k, "percentage" : v }
-                 for k, v in DATASET_TYPE_TO_OBJECTS[DatasetType(self.dataset_id)].items()]
+                 for k, v in DatasetManager.from_id(self.dataset_id).items()]
 
 
 class RetrieveCorrellationHandler(BaseByListeHandler, BaseByDatasetIdHandler):
@@ -48,4 +37,4 @@ class RetrieveCorrellationHandler(BaseByListeHandler, BaseByDatasetIdHandler):
         self.do_request_parsing()
         return DataCorellator().get_correlation_data(self.round_number,
                                                      self.liste_ids,
-                                                     DatasetType(self.dataset_id))
+                                                     DatasetManager.from_id(self.dataset_id))
